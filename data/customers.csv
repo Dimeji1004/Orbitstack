@@ -1,0 +1,451 @@
+customer_id,customer_name,segment,industry_subsector,country,acquisition_date,first_paid_invoice_date,acquisition_channel,acquisition_rep,original_arr_gbp
+CUS-00001,Stonefield Carriers BV,Enterprise,Fleet management,NL,2022-05-24,2022-07-06,Partner,C. Doyle,396600.00
+CUS-00002,Granite Lanes Ltd,Enterprise,Last-mile,UK,2021-08-31,2021-09-20,Referral,C. Doyle,125100.00
+CUS-00003,Ellesmere Freight Ltd,SMB,3PL,UK,2022-04-01,2022-04-28,Inbound,O. Petrova,7300.00
+CUS-00004,Maple Distribution Ltd,SMB,Fleet management,UK,2025-01-04,2025-02-26,Inbound,I. Jamison,5200.00
+CUS-00005,Wexford Haulage Ltd,Enterprise,Fleet management,UK,2021-01-26,2021-03-20,Inbound,E. Farouk,233700.00
+CUS-00006,Junction Logistics Ltd,SMB,Freight,UK,2022-03-01,2022-05-04,Inbound,C. Doyle,14900.00
+CUS-00007,Linden Cargo Ltd,Mid-market,Freight,UK,2025-12-03,2025-12-23,Inbound,A. Bennett,17100.00
+CUS-00008,Caldwell Freight Ltd,Enterprise,3PL,UK,2021-06-01,2021-06-13,Referral,I. Jamison,168200.00
+CUS-00009,Oakridge Lanes Ltd,Mid-market,Fleet management,UK,2021-06-12,2021-08-07,Inbound,K. Lindqvist,46200.00
+CUS-00010,Ashford Cargo Ltd,Mid-market,Warehousing,UK,2024-07-09,2024-08-26,Inbound,M. Nakamura,66800.00
+CUS-00011,Riverside Freight BV,SMB,Freight,NL,2025-03-16,2025-05-08,Partner,G. Hartley,10700.00
+CUS-00012,Sterling Distribution GmbH,Enterprise,3PL,DE,2021-10-29,2021-11-07,Outbound,I. Jamison,117400.00
+CUS-00013,Greycliff Distribution Ltd,SMB,Fleet management,UK,2021-02-20,2021-04-13,Partner,G. Hartley,9600.00
+CUS-00014,Riverside Haulage GmbH,SMB,Fleet management,DE,2023-10-08,2023-11-20,Inbound,E. Farouk,14300.00
+CUS-00015,Pinegate Distribution Limited,Mid-market,Warehousing,IE,2021-04-06,2021-05-22,Outbound,M. Nakamura,74400.00
+CUS-00016,Sterling Cargo Ltd,SMB,3PL,UK,2023-08-03,2023-09-24,Inbound,G. Hartley,8000.00
+CUS-00017,Upton Transit GmbH,Mid-market,Fleet management,DE,2025-06-25,2025-09-06,Inbound,E. Farouk,35900.00
+CUS-00018,Cascade Carriers Ltd,SMB,Freight,UK,2021-02-20,2021-04-06,Referral,A. Bennett,14500.00
+CUS-00019,Ironclad Cargo BV,SMB,Warehousing,NL,2025-06-24,2025-07-06,Inbound,G. Hartley,10900.00
+CUS-00020,Beacon Carriers Ltd,SMB,3PL,UK,2021-10-11,2021-11-16,Outbound,M. Nakamura,10100.00
+CUS-00021,Zephyr Transit Ltd,SMB,Warehousing,UK,2022-12-02,2022-12-25,Outbound,O. Petrova,12600.00
+CUS-00022,Penwick Haulage GmbH,SMB,Freight,DE,2021-06-08,2021-06-09,Inbound,I. Jamison,14200.00
+CUS-00023,Beacon Lanes Ltd,Enterprise,3PL,UK,2021-07-18,2021-10-11,Referral,E. Farouk,183500.00
+CUS-00024,Sunnymead Transit Ltd,SMB,Warehousing,UK,2021-11-05,2022-01-24,Inbound,I. Jamison,8200.00
+CUS-00025,Highland Lanes GmbH,SMB,Last-mile,DE,2024-02-24,2024-03-08,Partner,M. Nakamura,10400.00
+CUS-00026,Ashford Transit SAS,Enterprise,Freight,FR,2025-06-15,2025-06-24,Referral,C. Doyle,272400.00
+CUS-00027,Brookfield Distribution Ltd,Enterprise,Freight,UK,2021-10-31,2021-12-04,Outbound,E. Farouk,93900.00
+CUS-00028,Birchwood Logistics SAS,Mid-market,Freight,FR,2024-02-01,2024-02-25,Referral,G. Hartley,55000.00
+CUS-00029,Vesper Freight GmbH,SMB,Last-mile,DE,2022-11-18,2022-11-20,Inbound,E. Farouk,3500.00
+CUS-00030,Linwood Transit Ltd,Mid-market,Last-mile,UK,2022-06-02,2022-06-18,Outbound,I. Jamison,24600.00
+CUS-00031,Caldwell Logistics Limited,Mid-market,Fleet management,IE,2023-11-28,2023-12-09,Inbound,A. Bennett,66600.00
+CUS-00032,Sunnymead Logistics Ltd,Mid-market,Warehousing,UK,2021-02-26,2021-04-20,Partner,E. Farouk,71800.00
+CUS-00033,Penwick Freight GmbH,Mid-market,Fleet management,DE,2021-09-10,2021-10-03,Referral,G. Hartley,21800.00
+CUS-00034,Linwood Express Ltd,SMB,Warehousing,UK,2021-08-09,2021-09-06,Inbound,C. Doyle,14700.00
+CUS-00035,Oakridge Freight GmbH,SMB,Last-mile,DE,2022-02-15,2022-03-29,Partner,O. Petrova,14900.00
+CUS-00036,Granite Transit Ltd,Mid-market,Last-mile,UK,2021-09-21,2021-10-15,Inbound,K. Lindqvist,20800.00
+CUS-00037,Mossbank Distribution BV,Enterprise,Fleet management,NL,2024-11-28,2025-01-26,Outbound,A. Bennett,390400.00
+CUS-00038,Tideford Distribution Ltd,Enterprise,3PL,UK,2022-02-16,2022-05-16,Outbound,O. Petrova,214100.00
+CUS-00039,Sterling Routes Ltd,SMB,Fleet management,UK,2022-05-11,2022-07-14,Referral,C. Doyle,7900.00
+CUS-00040,Saltmarsh Logistics Ltd,Enterprise,Warehousing,UK,2025-07-12,2025-10-03,Outbound,E. Farouk,81800.00
+CUS-00041,Upton Distribution SAS,Enterprise,Fleet management,FR,2025-04-17,2025-05-14,Inbound,I. Jamison,152500.00
+CUS-00042,Highland Transit GmbH,SMB,Freight,DE,2021-10-08,2021-10-23,Inbound,M. Nakamura,9800.00
+CUS-00043,Ashford Haulage Limited,SMB,Warehousing,IE,2025-12-04,2026-01-19,Inbound,I. Jamison,9500.00
+CUS-00044,Linden Routes Ltd,Mid-market,Warehousing,UK,2022-03-31,2022-06-19,Inbound,O. Petrova,70800.00
+CUS-00045,Orchard Routes SAS,Enterprise,3PL,FR,2021-11-16,2022-01-12,Inbound,G. Hartley,125100.00
+CUS-00046,Kestrel Carriers Ltd,Mid-market,Last-mile,UK,2021-01-31,2021-04-16,Referral,I. Jamison,43800.00
+CUS-00047,Anchor Cargo GmbH,Mid-market,Warehousing,DE,2024-01-14,2024-02-09,Outbound,A. Bennett,29000.00
+CUS-00048,Mossbank Haulage Ltd,SMB,Last-mile,UK,2022-06-26,2022-08-17,Outbound,I. Jamison,11300.00
+CUS-00049,Northwind Freight Ltd,Enterprise,Fleet management,UK,2021-08-20,2021-09-30,Inbound,G. Hartley,323800.00
+CUS-00050,Holloway Lanes SAS,SMB,Freight,FR,2023-04-16,2023-06-13,Referral,K. Lindqvist,10800.00
+CUS-00051,Upton Haulage GmbH,SMB,3PL,DE,2025-07-31,2025-09-15,Partner,E. Farouk,11600.00
+CUS-00052,Quayside Logistics Ltd,SMB,Last-mile,UK,2022-01-29,2022-03-03,Inbound,M. Nakamura,4300.00
+CUS-00053,Redwood Distribution Ltd,Mid-market,Warehousing,UK,2024-12-25,2025-01-30,Partner,O. Petrova,36400.00
+CUS-00054,Crestline Express Ltd,SMB,Last-mile,UK,2021-11-12,2021-11-17,Outbound,E. Farouk,4800.00
+CUS-00055,Vesper Haulage GmbH,Mid-market,Warehousing,DE,2021-11-24,2021-11-30,Inbound,I. Jamison,27700.00
+CUS-00056,Crestline Logistics Ltd,SMB,Last-mile,UK,2021-08-08,2021-09-01,Outbound,C. Doyle,8300.00
+CUS-00057,Ridgemont Haulage Ltd,Enterprise,Warehousing,UK,2022-11-18,2022-12-20,Outbound,E. Farouk,155900.00
+CUS-00058,Brightwater Routes Ltd,SMB,Fleet management,UK,2021-08-07,2021-09-30,Inbound,K. Lindqvist,4900.00
+CUS-00059,Ironclad Logistics SAS,SMB,Warehousing,FR,2021-05-07,2021-07-03,Referral,I. Jamison,5800.00
+CUS-00060,Junction Lanes Ltd,Mid-market,Warehousing,UK,2023-03-28,2023-04-03,Partner,M. Nakamura,48700.00
+CUS-00061,Foxgrove Distribution GmbH,SMB,Freight,DE,2021-06-04,2021-07-30,Partner,G. Hartley,9200.00
+CUS-00062,Birchwood Distribution SAS,SMB,Warehousing,FR,2021-01-06,2021-01-17,Outbound,K. Lindqvist,10300.00
+CUS-00063,Ellesmere Routes GmbH,Mid-market,Freight,DE,2021-06-09,2021-06-24,Outbound,I. Jamison,51000.00
+CUS-00064,Sunnymead Carriers Ltd,Mid-market,3PL,UK,2024-07-20,2024-10-07,Partner,K. Lindqvist,71800.00
+CUS-00065,Larkfield Freight Ltd,SMB,Freight,UK,2022-08-07,2022-09-18,Outbound,E. Farouk,3700.00
+CUS-00066,Inglewood Lanes SAS,Mid-market,Fleet management,FR,2021-09-23,2021-12-08,Inbound,M. Nakamura,36700.00
+CUS-00067,Wexford Routes Ltd,Enterprise,Freight,UK,2023-12-31,2024-01-06,Outbound,G. Hartley,239700.00
+CUS-00068,Stonefield Cargo Ltd,Mid-market,3PL,UK,2023-07-08,2023-08-27,Partner,I. Jamison,35100.00
+CUS-00069,Riverside Cargo Ltd,Mid-market,Fleet management,UK,2021-10-27,2022-01-07,Outbound,A. Bennett,16600.00
+CUS-00070,Granite Express GmbH,SMB,Last-mile,DE,2021-01-22,2021-02-22,Inbound,O. Petrova,9500.00
+CUS-00071,Granite Routes Ltd,Enterprise,Last-mile,UK,2022-10-28,2023-01-10,Partner,G. Hartley,131700.00
+CUS-00072,Caldwell Transit BV,SMB,Freight,NL,2021-03-03,2021-03-10,Inbound,A. Bennett,8700.00
+CUS-00073,Zephyr Carriers SAS,Mid-market,Freight,FR,2024-12-20,2025-03-16,Inbound,K. Lindqvist,47400.00
+CUS-00074,Granite Distribution Ltd,Mid-market,3PL,UK,2021-06-03,2021-08-30,Inbound,C. Doyle,56100.00
+CUS-00075,Marston Carriers Ltd,Enterprise,3PL,UK,2021-03-07,2021-05-17,Inbound,G. Hartley,214100.00
+CUS-00076,Pinegate Lanes GmbH,SMB,Warehousing,DE,2024-07-11,2024-08-24,Partner,K. Lindqvist,7000.00
+CUS-00077,Westmoor Lanes SAS,SMB,3PL,FR,2023-08-01,2023-10-25,Outbound,A. Bennett,9800.00
+CUS-00078,Wexford Freight Ltd,SMB,Warehousing,UK,2021-12-05,2022-02-01,Inbound,E. Farouk,11100.00
+CUS-00079,Brookfield Transit GmbH,Enterprise,Fleet management,DE,2022-03-19,2022-03-22,Referral,E. Farouk,229100.00
+CUS-00080,Hartwood Routes Ltd,SMB,Freight,UK,2021-07-23,2021-09-27,Referral,C. Doyle,7000.00
+CUS-00081,Marston Routes Ltd,SMB,Fleet management,UK,2021-03-27,2021-04-24,Referral,O. Petrova,7800.00
+CUS-00082,Stonefield Haulage Ltd,Mid-market,3PL,UK,2022-11-18,2022-12-16,Inbound,G. Hartley,35300.00
+CUS-00083,Westmoor Distribution Limited,SMB,Fleet management,IE,2025-06-26,2025-07-23,Outbound,G. Hartley,10000.00
+CUS-00084,Tideford Lanes SAS,SMB,Fleet management,FR,2024-08-07,2024-10-22,Referral,G. Hartley,3200.00
+CUS-00085,Birchwood Freight GmbH,Mid-market,Fleet management,DE,2021-01-21,2021-04-09,Partner,O. Petrova,24700.00
+CUS-00086,Hartwood Lanes Ltd,Mid-market,3PL,UK,2021-09-27,2021-12-22,Inbound,K. Lindqvist,49400.00
+CUS-00087,Highland Freight GmbH,Mid-market,Fleet management,DE,2024-07-02,2024-08-14,Inbound,M. Nakamura,35700.00
+CUS-00088,Tideford Express BV,Mid-market,Warehousing,NL,2025-03-28,2025-06-25,Outbound,M. Nakamura,66300.00
+CUS-00089,Ellesmere Haulage BV,SMB,3PL,NL,2021-10-26,2021-10-29,Referral,C. Doyle,5300.00
+CUS-00090,Junction Routes Ltd,SMB,Fleet management,UK,2023-08-24,2023-11-21,Outbound,G. Hartley,10300.00
+CUS-00091,Wexford Transit Ltd,SMB,3PL,UK,2021-03-11,2021-03-19,Outbound,K. Lindqvist,6700.00
+CUS-00092,Coppergate Logistics BV,SMB,Last-mile,NL,2021-11-05,2021-11-09,Inbound,E. Farouk,5100.00
+CUS-00093,Larkfield Transit GmbH,SMB,Warehousing,DE,2024-04-07,2024-06-01,Partner,A. Bennett,5500.00
+CUS-00094,Birchwood Haulage Ltd,SMB,Fleet management,UK,2021-07-14,2021-10-05,Partner,K. Lindqvist,7200.00
+CUS-00095,Zephyr Lanes Ltd,Mid-market,Last-mile,UK,2024-06-21,2024-08-09,Outbound,O. Petrova,58800.00
+CUS-00096,Penwick Express GmbH,SMB,Last-mile,DE,2021-02-24,2021-05-09,Partner,M. Nakamura,6800.00
+CUS-00097,Mossbank Freight SAS,SMB,3PL,FR,2023-11-23,2023-12-07,Referral,M. Nakamura,12000.00
+CUS-00098,Vesper Transit SAS,Mid-market,Last-mile,FR,2021-09-01,2021-10-02,Inbound,E. Farouk,64400.00
+CUS-00099,Cornerstone Transit Ltd,Enterprise,Warehousing,UK,2021-06-02,2021-06-29,Outbound,E. Farouk,307700.00
+CUS-00100,Wexford Cargo Ltd,Enterprise,Warehousing,UK,2021-04-02,2021-04-23,Inbound,O. Petrova,286700.00
+CUS-00101,Nettleton Logistics GmbH,Mid-market,Freight,DE,2022-12-10,2022-12-26,Partner,A. Bennett,70200.00
+CUS-00102,Yardley Carriers GmbH,SMB,Warehousing,DE,2023-08-24,2023-10-21,Outbound,E. Farouk,8300.00
+CUS-00103,Sterling Haulage Ltd,Enterprise,Last-mile,UK,2022-08-12,2022-11-09,Outbound,C. Doyle,299500.00
+CUS-00104,Sunnymead Express GmbH,Mid-market,Warehousing,DE,2021-07-26,2021-10-04,Partner,A. Bennett,25700.00
+CUS-00105,Ridgemont Distribution Ltd,SMB,3PL,UK,2021-09-02,2021-10-28,Outbound,E. Farouk,4800.00
+CUS-00106,Wickham Lanes GmbH,Mid-market,Freight,DE,2023-11-03,2023-11-28,Referral,I. Jamison,74500.00
+CUS-00107,Larkfield Lanes Ltd,SMB,Last-mile,UK,2023-08-19,2023-09-12,Outbound,K. Lindqvist,12800.00
+CUS-00108,Saltmarsh Cargo GmbH,SMB,Freight,DE,2022-03-17,2022-03-26,Inbound,E. Farouk,14000.00
+CUS-00109,Inglewood Transit Ltd,Mid-market,Last-mile,UK,2025-05-12,2025-06-25,Partner,C. Doyle,56300.00
+CUS-00110,Riverside Transit Ltd,SMB,3PL,UK,2021-10-27,2022-01-17,Partner,G. Hartley,8200.00
+CUS-00111,Sunnymead Haulage SAS,SMB,Freight,FR,2025-12-24,2026-01-03,Inbound,E. Farouk,6300.00
+CUS-00112,Maple Cargo Ltd,Mid-market,Fleet management,UK,2022-03-03,2022-05-18,Referral,M. Nakamura,28300.00
+CUS-00113,Ironclad Transit GmbH,Mid-market,Last-mile,DE,2023-08-01,2023-09-22,Referral,M. Nakamura,43200.00
+CUS-00114,Cornerstone Logistics Ltd,Enterprise,Fleet management,UK,2025-01-26,2025-04-07,Inbound,M. Nakamura,87200.00
+CUS-00115,Highland Distribution Ltd,Mid-market,Freight,UK,2024-02-06,2024-04-13,Referral,G. Hartley,63000.00
+CUS-00116,Oakridge Cargo Ltd,SMB,Fleet management,UK,2021-11-02,2021-11-29,Inbound,M. Nakamura,12500.00
+CUS-00117,Upton Carriers Ltd,Enterprise,Fleet management,UK,2021-12-11,2022-02-23,Inbound,I. Jamison,135900.00
+CUS-00118,Thornbury Freight Ltd,SMB,Freight,UK,2024-04-23,2024-06-26,Inbound,E. Farouk,9900.00
+CUS-00119,Whitestone Logistics SAS,Mid-market,3PL,FR,2021-04-09,2021-05-27,Referral,O. Petrova,59200.00
+CUS-00120,Mossbank Express Ltd,SMB,Fleet management,UK,2024-12-26,2025-02-10,Partner,M. Nakamura,12900.00
+CUS-00121,Oakridge Distribution Ltd,SMB,Fleet management,UK,2021-04-23,2021-06-13,Inbound,A. Bennett,8800.00
+CUS-00122,Saltmarsh Carriers Ltd,SMB,3PL,UK,2021-05-14,2021-08-09,Outbound,O. Petrova,3100.00
+CUS-00123,Nettleton Cargo Ltd,SMB,Fleet management,UK,2021-02-05,2021-03-30,Outbound,G. Hartley,5800.00
+CUS-00124,Northwind Cargo GmbH,Mid-market,Fleet management,DE,2021-08-08,2021-10-06,Inbound,I. Jamison,60100.00
+CUS-00125,Junction Carriers GmbH,Mid-market,Fleet management,DE,2025-08-26,2025-10-21,Referral,A. Bennett,21400.00
+CUS-00126,Kestrel Freight GmbH,Mid-market,Warehousing,DE,2023-02-25,2023-04-12,Partner,A. Bennett,74400.00
+CUS-00127,Cornerstone Freight Ltd,SMB,3PL,UK,2021-12-08,2022-01-07,Outbound,A. Bennett,5500.00
+CUS-00128,Vesper Routes SAS,SMB,Fleet management,FR,2023-05-17,2023-07-01,Referral,A. Bennett,11800.00
+CUS-00129,Vesper Express Ltd,Mid-market,3PL,UK,2021-08-01,2021-08-26,Outbound,O. Petrova,41500.00
+CUS-00130,Granite Carriers Ltd,Mid-market,Last-mile,UK,2021-12-27,2021-12-31,Referral,O. Petrova,22800.00
+CUS-00131,Pinegate Carriers BV,SMB,Last-mile,NL,2022-09-01,2022-11-23,Partner,E. Farouk,8800.00
+CUS-00132,Wexford Logistics Ltd,Mid-market,Fleet management,UK,2022-08-04,2022-09-24,Outbound,M. Nakamura,70900.00
+CUS-00133,Inglewood Freight Ltd,Mid-market,3PL,UK,2023-11-20,2024-02-02,Inbound,K. Lindqvist,39700.00
+CUS-00134,Maple Carriers Ltd,SMB,3PL,UK,2021-02-14,2021-04-08,Referral,E. Farouk,5100.00
+CUS-00135,Wickham Logistics Ltd,SMB,3PL,UK,2022-07-25,2022-08-26,Outbound,E. Farouk,12900.00
+CUS-00136,Stonefield Logistics SAS,Enterprise,Warehousing,FR,2022-08-21,2022-10-09,Inbound,I. Jamison,140900.00
+CUS-00137,Linwood Logistics Ltd,SMB,Last-mile,UK,2021-07-05,2021-08-11,Inbound,I. Jamison,5900.00
+CUS-00138,Upton Freight Limited,Mid-market,3PL,IE,2025-11-14,2025-12-10,Outbound,M. Nakamura,17400.00
+CUS-00139,Thornbury Carriers Ltd,Enterprise,3PL,UK,2025-09-29,2025-10-13,Outbound,K. Lindqvist,282800.00
+CUS-00140,Wickham Cargo Ltd,SMB,Warehousing,UK,2022-08-26,2022-10-25,Partner,I. Jamison,5700.00
+CUS-00141,Tideford Routes BV,SMB,Warehousing,NL,2023-04-04,2023-04-24,Referral,M. Nakamura,9400.00
+CUS-00142,Brightwater Freight SAS,Enterprise,3PL,FR,2021-01-04,2021-02-18,Inbound,M. Nakamura,372800.00
+CUS-00143,Brookfield Cargo Ltd,SMB,Freight,UK,2024-03-25,2024-06-01,Partner,O. Petrova,7400.00
+CUS-00144,Cascade Logistics Ltd,Mid-market,3PL,UK,2021-04-13,2021-04-18,Inbound,C. Doyle,21700.00
+CUS-00145,Pinegate Haulage Ltd,Mid-market,3PL,UK,2022-03-09,2022-04-15,Referral,O. Petrova,15600.00
+CUS-00146,Upton Cargo Ltd,SMB,Warehousing,UK,2024-02-17,2024-04-18,Partner,K. Lindqvist,7800.00
+CUS-00147,Kestrel Routes Ltd,SMB,Warehousing,UK,2021-04-05,2021-06-29,Outbound,I. Jamison,3800.00
+CUS-00148,Inglewood Carriers Ltd,Enterprise,3PL,UK,2021-05-03,2021-07-03,Partner,K. Lindqvist,88200.00
+CUS-00149,Cornerstone Routes GmbH,SMB,3PL,DE,2021-09-02,2021-11-22,Inbound,E. Farouk,3000.00
+CUS-00150,Whitestone Express Ltd,Enterprise,3PL,UK,2021-06-14,2021-08-30,Outbound,E. Farouk,394400.00
+CUS-00151,Cornerstone Express Ltd,Enterprise,Warehousing,UK,2023-09-30,2023-12-12,Partner,K. Lindqvist,289300.00
+CUS-00152,Linden Carriers Ltd,SMB,3PL,UK,2025-03-14,2025-04-28,Outbound,C. Doyle,13500.00
+CUS-00153,Mossbank Logistics Ltd,Mid-market,3PL,UK,2024-08-22,2024-09-03,Outbound,C. Doyle,41100.00
+CUS-00154,Maple Routes Ltd,SMB,Fleet management,UK,2025-07-10,2025-07-12,Outbound,O. Petrova,7700.00
+CUS-00155,Maple Lanes Ltd,SMB,Freight,UK,2023-07-29,2023-08-03,Partner,K. Lindqvist,6700.00
+CUS-00156,Riverside Lanes BV,SMB,Last-mile,NL,2021-03-16,2021-03-23,Inbound,I. Jamison,4600.00
+CUS-00157,Greycliff Cargo Ltd,Mid-market,Freight,UK,2023-10-08,2023-11-20,Inbound,O. Petrova,51900.00
+CUS-00158,Hartwood Distribution Ltd,SMB,Fleet management,UK,2021-12-07,2022-01-08,Partner,G. Hartley,5600.00
+CUS-00159,Zephyr Haulage Ltd,Enterprise,Last-mile,UK,2024-07-20,2024-10-08,Partner,C. Doyle,290100.00
+CUS-00160,Greycliff Express Ltd,SMB,3PL,UK,2021-05-14,2021-07-27,Inbound,A. Bennett,7900.00
+CUS-00161,Mossbank Carriers Ltd,SMB,Fleet management,UK,2021-02-03,2021-04-20,Inbound,O. Petrova,6400.00
+CUS-00162,Wexford Carriers Ltd,SMB,3PL,UK,2022-09-29,2022-11-17,Inbound,E. Farouk,14500.00
+CUS-00163,Thornbury Logistics Ltd,Mid-market,Warehousing,UK,2023-11-04,2023-11-14,Inbound,O. Petrova,65600.00
+CUS-00164,Nettleton Carriers GmbH,SMB,Fleet management,DE,2023-12-06,2024-01-02,Outbound,K. Lindqvist,11400.00
+CUS-00165,Beacon Transit BV,Enterprise,Warehousing,NL,2023-05-21,2023-07-29,Partner,A. Bennett,399800.00
+CUS-00166,Brookfield Freight Ltd,Mid-market,Fleet management,UK,2024-07-05,2024-08-14,Partner,K. Lindqvist,55800.00
+CUS-00167,Upton Lanes Ltd,Mid-market,Fleet management,UK,2021-10-29,2021-11-13,Outbound,M. Nakamura,51600.00
+CUS-00168,Westmoor Haulage GmbH,SMB,Warehousing,DE,2022-07-02,2022-09-07,Outbound,E. Farouk,4400.00
+CUS-00169,Cascade Distribution SAS,Mid-market,Last-mile,FR,2021-07-25,2021-09-10,Partner,E. Farouk,79300.00
+CUS-00170,Birchwood Express Ltd,Mid-market,Freight,UK,2021-03-16,2021-05-10,Outbound,C. Doyle,75400.00
+CUS-00171,Maple Haulage Ltd,Enterprise,3PL,UK,2021-02-09,2021-04-13,Referral,O. Petrova,322600.00
+CUS-00172,Linwood Carriers Ltd,Mid-market,Fleet management,UK,2021-04-20,2021-06-17,Outbound,C. Doyle,22200.00
+CUS-00173,Sterling Carriers Ltd,Mid-market,3PL,UK,2025-11-23,2026-02-20,Inbound,A. Bennett,39700.00
+CUS-00174,Caldwell Distribution SAS,Mid-market,Warehousing,FR,2022-05-10,2022-07-10,Partner,O. Petrova,19200.00
+CUS-00175,Stonefield Transit SAS,Enterprise,3PL,FR,2024-03-08,2024-05-22,Inbound,M. Nakamura,322400.00
+CUS-00176,Brookfield Logistics Ltd,Enterprise,Warehousing,UK,2021-12-25,2022-01-04,Partner,K. Lindqvist,186400.00
+CUS-00177,Birchwood Cargo Ltd,Mid-market,3PL,UK,2021-10-29,2022-01-25,Inbound,M. Nakamura,31900.00
+CUS-00178,Westmoor Freight SAS,SMB,Freight,FR,2021-04-09,2021-04-26,Inbound,E. Farouk,7900.00
+CUS-00179,Linwood Distribution Ltd,SMB,Freight,UK,2022-05-24,2022-06-11,Referral,A. Bennett,11300.00
+CUS-00180,Foxgrove Express Ltd,Enterprise,Freight,UK,2023-07-03,2023-09-27,Inbound,G. Hartley,231600.00
+CUS-00181,Junction Haulage Limited,SMB,Freight,IE,2022-03-23,2022-05-16,Partner,A. Bennett,6900.00
+CUS-00182,Brightwater Transit Ltd,Mid-market,Freight,UK,2022-10-26,2023-01-15,Inbound,I. Jamison,18800.00
+CUS-00183,Redwood Logistics Ltd,Enterprise,Freight,UK,2022-09-28,2022-10-23,Outbound,A. Bennett,116800.00
+CUS-00184,Pinegate Transit Ltd,SMB,Warehousing,UK,2021-10-05,2021-10-10,Partner,M. Nakamura,14600.00
+CUS-00185,Upton Express Ltd,SMB,Fleet management,UK,2021-01-26,2021-01-29,Outbound,I. Jamison,5200.00
+CUS-00186,Zephyr Logistics Limited,Mid-market,3PL,IE,2022-05-27,2022-06-24,Inbound,I. Jamison,26000.00
+CUS-00187,Quayside Haulage Ltd,Mid-market,Freight,UK,2022-12-20,2023-02-16,Inbound,O. Petrova,62900.00
+CUS-00188,Yardley Routes BV,SMB,Warehousing,NL,2021-05-20,2021-06-05,Inbound,O. Petrova,8100.00
+CUS-00189,Penwick Transit GmbH,Mid-market,Warehousing,DE,2021-05-05,2021-06-16,Inbound,I. Jamison,19600.00
+CUS-00190,Brightwater Cargo SAS,Mid-market,Warehousing,FR,2021-10-10,2021-12-28,Partner,G. Hartley,72400.00
+CUS-00191,Caldwell Lanes Ltd,SMB,Fleet management,UK,2024-09-25,2024-11-29,Referral,O. Petrova,12600.00
+CUS-00192,Saltmarsh Express GmbH,SMB,3PL,DE,2021-07-06,2021-08-08,Referral,A. Bennett,15000.00
+CUS-00193,Marston Haulage SAS,SMB,Fleet management,FR,2021-02-11,2021-02-18,Partner,M. Nakamura,13900.00
+CUS-00194,Brightwater Haulage Ltd,SMB,Last-mile,UK,2021-01-24,2021-02-05,Partner,A. Bennett,9800.00
+CUS-00195,Ashford Routes Ltd,SMB,Warehousing,UK,2021-05-08,2021-05-15,Partner,G. Hartley,7200.00
+CUS-00196,Pinegate Logistics BV,Mid-market,Last-mile,NL,2022-06-25,2022-08-28,Inbound,E. Farouk,44500.00
+CUS-00197,Upton Logistics GmbH,SMB,Freight,DE,2025-09-23,2025-11-04,Referral,C. Doyle,10400.00
+CUS-00198,Wickham Haulage Ltd,SMB,Freight,UK,2022-03-31,2022-05-08,Partner,M. Nakamura,9000.00
+CUS-00199,Quayside Cargo Ltd,SMB,Fleet management,UK,2021-04-19,2021-07-08,Outbound,O. Petrova,7900.00
+CUS-00200,Orchard Logistics Ltd,Mid-market,3PL,UK,2022-04-21,2022-06-18,Inbound,M. Nakamura,46300.00
+CUS-00201,Hartwood Haulage SAS,SMB,Last-mile,FR,2021-11-14,2022-02-05,Outbound,A. Bennett,6200.00
+CUS-00202,Hartwood Express Ltd,Enterprise,3PL,UK,2021-08-04,2021-10-30,Outbound,C. Doyle,113000.00
+CUS-00203,Stonefield Distribution Ltd,Mid-market,Fleet management,UK,2021-05-19,2021-08-12,Referral,K. Lindqvist,67700.00
+CUS-00204,Penwick Carriers SAS,SMB,Freight,FR,2024-12-20,2025-03-15,Outbound,K. Lindqvist,11100.00
+CUS-00205,Maple Freight Ltd,Enterprise,3PL,UK,2021-03-20,2021-05-02,Outbound,O. Petrova,242900.00
+CUS-00206,Kestrel Express SAS,Mid-market,3PL,FR,2022-09-13,2022-09-21,Referral,G. Hartley,45300.00
+CUS-00207,Brightwater Distribution Ltd,Mid-market,Freight,UK,2021-07-30,2021-09-04,Inbound,K. Lindqvist,65200.00
+CUS-00208,Cascade Freight Ltd,SMB,Last-mile,UK,2024-09-07,2024-11-19,Outbound,M. Nakamura,3900.00
+CUS-00209,Mossbank Lanes Ltd,SMB,Freight,UK,2022-02-12,2022-03-19,Inbound,K. Lindqvist,11100.00
+CUS-00210,Coppergate Routes Ltd,Mid-market,3PL,UK,2021-12-13,2022-01-09,Partner,E. Farouk,69900.00
+CUS-00211,Wexford Express GmbH,SMB,Last-mile,DE,2021-01-09,2021-02-19,Referral,E. Farouk,4800.00
+CUS-00212,Yardley Haulage GmbH,Mid-market,Last-mile,DE,2022-01-12,2022-02-23,Inbound,O. Petrova,31300.00
+CUS-00213,Holloway Express Ltd,SMB,Freight,UK,2022-01-09,2022-04-03,Referral,E. Farouk,8800.00
+CUS-00214,Zephyr Distribution SAS,SMB,3PL,FR,2021-05-17,2021-08-12,Inbound,K. Lindqvist,9200.00
+CUS-00215,Cascade Express Ltd,SMB,Fleet management,UK,2021-03-16,2021-04-26,Referral,G. Hartley,10600.00
+CUS-00216,Penwick Lanes SAS,Mid-market,3PL,FR,2025-08-22,2025-10-26,Partner,I. Jamison,65300.00
+CUS-00217,Crestline Lanes Ltd,SMB,Warehousing,UK,2023-05-08,2023-07-01,Partner,I. Jamison,7500.00
+CUS-00218,Ironclad Lanes BV,Mid-market,Fleet management,NL,2021-04-24,2021-07-04,Inbound,O. Petrova,53600.00
+CUS-00219,Cornerstone Carriers Ltd,SMB,Last-mile,UK,2024-10-30,2024-12-16,Referral,C. Doyle,10300.00
+CUS-00220,Ashford Logistics GmbH,Mid-market,Fleet management,DE,2021-08-20,2021-11-18,Partner,I. Jamison,75200.00
+CUS-00221,Nettleton Haulage GmbH,SMB,Last-mile,DE,2022-12-10,2022-12-31,Inbound,I. Jamison,13900.00
+CUS-00222,Maple Express SAS,SMB,Last-mile,FR,2021-01-04,2021-01-30,Partner,E. Farouk,3700.00
+CUS-00223,Holloway Freight BV,Mid-market,Fleet management,NL,2022-06-29,2022-09-03,Inbound,E. Farouk,64300.00
+CUS-00224,Riverside Carriers Ltd,Mid-market,Last-mile,UK,2021-09-27,2021-10-09,Referral,K. Lindqvist,63900.00
+CUS-00225,Larkfield Express GmbH,Mid-market,Last-mile,DE,2022-12-23,2023-02-05,Inbound,O. Petrova,22200.00
+CUS-00226,Brightwater Carriers Ltd,SMB,Warehousing,UK,2025-01-29,2025-02-07,Partner,C. Doyle,3500.00
+CUS-00227,Quayside Carriers Ltd,Mid-market,3PL,UK,2021-07-17,2021-07-25,Outbound,O. Petrova,76800.00
+CUS-00228,Redwood Transit Ltd,SMB,3PL,UK,2023-04-01,2023-05-24,Inbound,A. Bennett,11800.00
+CUS-00229,Thornbury Routes SAS,SMB,Warehousing,FR,2024-04-01,2024-04-27,Inbound,M. Nakamura,6800.00
+CUS-00230,Brookfield Lanes Limited,SMB,Fleet management,IE,2021-01-06,2021-02-08,Inbound,C. Doyle,14200.00
+CUS-00231,Mossbank Routes Ltd,SMB,Freight,UK,2022-01-13,2022-01-13,Outbound,C. Doyle,8900.00
+CUS-00232,Greycliff Carriers Ltd,SMB,Freight,UK,2024-05-06,2024-06-06,Inbound,G. Hartley,5700.00
+CUS-00233,Sterling Express BV,SMB,Freight,NL,2023-07-10,2023-10-06,Outbound,O. Petrova,12600.00
+CUS-00234,Saltmarsh Routes SAS,Mid-market,Warehousing,FR,2021-04-10,2021-06-19,Inbound,K. Lindqvist,69800.00
+CUS-00235,Mossbank Transit GmbH,SMB,Warehousing,DE,2022-10-22,2022-12-27,Inbound,G. Hartley,3800.00
+CUS-00236,Caldwell Routes SAS,SMB,Last-mile,FR,2025-04-25,2025-07-17,Partner,C. Doyle,11100.00
+CUS-00237,Zephyr Express Ltd,Mid-market,Freight,UK,2021-10-20,2021-11-08,Inbound,C. Doyle,71700.00
+CUS-00238,Thornbury Express GmbH,Mid-market,Fleet management,DE,2024-01-16,2024-02-19,Referral,C. Doyle,33600.00
+CUS-00239,Nettleton Lanes GmbH,Mid-market,Fleet management,DE,2024-03-18,2024-06-16,Referral,I. Jamison,59400.00
+CUS-00240,Ironclad Carriers GmbH,Mid-market,Freight,DE,2022-02-20,2022-05-20,Partner,O. Petrova,71900.00
+CUS-00241,Brookfield Express Ltd,Mid-market,Freight,UK,2021-07-04,2021-09-19,Outbound,M. Nakamura,51200.00
+CUS-00242,Coppergate Distribution Ltd,Mid-market,Freight,UK,2021-04-11,2021-04-27,Referral,M. Nakamura,27200.00
+CUS-00243,Northwind Logistics Ltd,Enterprise,Warehousing,UK,2021-12-07,2021-12-24,Inbound,G. Hartley,201100.00
+CUS-00244,Cascade Routes Ltd,SMB,Warehousing,UK,2021-08-09,2021-09-22,Inbound,C. Doyle,13100.00
+CUS-00245,Crestline Carriers GmbH,SMB,Warehousing,DE,2025-10-02,2025-12-24,Inbound,M. Nakamura,6900.00
+CUS-00246,Coppergate Haulage Ltd,Mid-market,3PL,UK,2023-12-27,2024-02-17,Partner,E. Farouk,56900.00
+CUS-00247,Beacon Haulage Ltd,Mid-market,Fleet management,UK,2024-10-24,2025-01-22,Inbound,O. Petrova,77500.00
+CUS-00248,Linden Haulage Ltd,Mid-market,Fleet management,UK,2023-01-29,2023-04-20,Outbound,M. Nakamura,40100.00
+CUS-00249,Greycliff Logistics Ltd,Mid-market,Last-mile,UK,2021-06-16,2021-08-22,Referral,K. Lindqvist,76800.00
+CUS-00250,Upton Routes GmbH,SMB,Warehousing,DE,2023-02-20,2023-04-25,Referral,O. Petrova,6600.00
+CUS-00251,Larkfield Cargo Limited,Mid-market,3PL,IE,2024-04-29,2024-04-29,Outbound,K. Lindqvist,48400.00
+CUS-00252,Yardley Transit GmbH,Mid-market,3PL,DE,2023-05-10,2023-07-06,Inbound,M. Nakamura,24100.00
+CUS-00253,Ashford Carriers Limited,SMB,Fleet management,IE,2021-08-11,2021-09-05,Partner,E. Farouk,4700.00
+CUS-00254,Quayside Transit Ltd,Mid-market,Warehousing,UK,2021-09-16,2021-10-05,Outbound,K. Lindqvist,21200.00
+CUS-00255,Granite Freight BV,Enterprise,Last-mile,NL,2021-02-25,2021-05-22,Inbound,I. Jamison,335900.00
+CUS-00256,Vesper Cargo SAS,Enterprise,Warehousing,FR,2022-04-21,2022-04-30,Inbound,M. Nakamura,196200.00
+CUS-00257,Crestline Freight SAS,Enterprise,Freight,FR,2024-07-12,2024-09-08,Referral,I. Jamison,202800.00
+CUS-00258,Cornerstone Distribution Ltd,Mid-market,Warehousing,UK,2021-11-07,2022-01-20,Partner,M. Nakamura,36300.00
+CUS-00259,Thornbury Haulage Limited,Mid-market,Freight,IE,2024-08-13,2024-09-22,Partner,A. Bennett,40500.00
+CUS-00260,Cascade Transit Ltd,Mid-market,Freight,UK,2024-09-05,2024-09-09,Referral,A. Bennett,28400.00
+CUS-00261,Riverside Express Ltd,Mid-market,Last-mile,UK,2021-08-20,2021-10-23,Outbound,A. Bennett,72200.00
+CUS-00262,Marston Transit Ltd,SMB,Fleet management,UK,2024-10-09,2024-10-25,Outbound,K. Lindqvist,13600.00
+CUS-00263,Holloway Cargo Ltd,SMB,Warehousing,UK,2021-10-15,2021-11-05,Outbound,I. Jamison,8300.00
+CUS-00264,Coppergate Carriers Ltd,Mid-market,Freight,UK,2023-03-12,2023-04-21,Inbound,I. Jamison,23700.00
+CUS-00265,Highland Carriers BV,Mid-market,Warehousing,NL,2022-10-29,2023-01-04,Outbound,I. Jamison,35600.00
+CUS-00266,Wexford Distribution BV,Mid-market,Fleet management,NL,2021-03-11,2021-05-18,Partner,E. Farouk,27800.00
+CUS-00267,Yardley Logistics SAS,Enterprise,Fleet management,FR,2021-06-14,2021-06-24,Outbound,I. Jamison,162200.00
+CUS-00268,Caldwell Haulage GmbH,Mid-market,3PL,DE,2021-02-21,2021-04-17,Referral,E. Farouk,15200.00
+CUS-00269,Ironclad Freight Ltd,Mid-market,Fleet management,UK,2023-05-15,2023-07-04,Outbound,A. Bennett,27000.00
+CUS-00270,Sunnymead Distribution Ltd,Mid-market,Last-mile,UK,2024-03-28,2024-04-17,Outbound,A. Bennett,53400.00
+CUS-00271,Zephyr Cargo Ltd,SMB,Freight,UK,2024-05-03,2024-07-17,Outbound,K. Lindqvist,13100.00
+CUS-00272,Caldwell Carriers SAS,SMB,3PL,FR,2021-04-26,2021-05-21,Outbound,M. Nakamura,6700.00
+CUS-00273,Brookfield Haulage Ltd,SMB,Last-mile,UK,2022-09-29,2022-10-17,Partner,A. Bennett,11400.00
+CUS-00274,Greycliff Freight Ltd,Mid-market,Warehousing,UK,2021-03-24,2021-05-22,Inbound,M. Nakamura,79400.00
+CUS-00275,Vesper Distribution Ltd,Mid-market,Freight,UK,2022-08-03,2022-10-12,Outbound,M. Nakamura,17000.00
+CUS-00276,Orchard Lanes GmbH,SMB,Fleet management,DE,2022-07-07,2022-08-22,Inbound,O. Petrova,14300.00
+CUS-00277,Cascade Cargo Limited,SMB,Freight,IE,2022-04-15,2022-06-24,Outbound,K. Lindqvist,10000.00
+CUS-00278,Linden Freight BV,Mid-market,Warehousing,NL,2022-01-31,2022-02-25,Outbound,C. Doyle,77000.00
+CUS-00279,Granite Cargo GmbH,Enterprise,3PL,DE,2022-12-31,2023-02-08,Partner,C. Doyle,315000.00
+CUS-00280,Beacon Cargo Ltd,Mid-market,3PL,UK,2021-07-22,2021-07-26,Referral,G. Hartley,74500.00
+CUS-00281,Ridgemont Cargo Ltd,SMB,3PL,UK,2022-05-17,2022-06-06,Outbound,O. Petrova,11200.00
+CUS-00282,Ellesmere Express GmbH,Enterprise,Fleet management,DE,2021-04-14,2021-06-30,Partner,K. Lindqvist,160200.00
+CUS-00283,Kestrel Distribution GmbH,SMB,Last-mile,DE,2025-05-08,2025-05-11,Outbound,G. Hartley,9700.00
+CUS-00284,Orchard Carriers Ltd,Mid-market,Last-mile,UK,2021-05-20,2021-06-11,Outbound,G. Hartley,21800.00
+CUS-00285,Ironclad Haulage Ltd,Mid-market,Freight,UK,2024-04-19,2024-07-11,Inbound,O. Petrova,27800.00
+CUS-00286,Pinegate Cargo Ltd,SMB,Fleet management,UK,2022-09-20,2022-10-04,Inbound,C. Doyle,9700.00
+CUS-00287,Coppergate Cargo Ltd,Mid-market,3PL,UK,2021-04-05,2021-04-12,Outbound,K. Lindqvist,28900.00
+CUS-00288,Anchor Routes GmbH,SMB,3PL,DE,2024-03-22,2024-05-01,Outbound,C. Doyle,8900.00
+CUS-00289,Hartwood Transit Ltd,Enterprise,Warehousing,UK,2023-03-24,2023-04-11,Inbound,G. Hartley,313000.00
+CUS-00290,Quayside Express Ltd,SMB,Warehousing,UK,2022-04-11,2022-05-26,Inbound,K. Lindqvist,8500.00
+CUS-00291,Foxgrove Carriers Ltd,Mid-market,3PL,UK,2021-06-29,2021-07-26,Inbound,G. Hartley,68400.00
+CUS-00292,Saltmarsh Transit GmbH,SMB,3PL,DE,2025-10-17,2026-01-15,Referral,I. Jamison,5400.00
+CUS-00293,Linden Express Ltd,Mid-market,Fleet management,UK,2024-04-02,2024-06-08,Inbound,O. Petrova,42600.00
+CUS-00294,Oakridge Express Ltd,SMB,Last-mile,UK,2025-01-22,2025-02-05,Outbound,M. Nakamura,9000.00
+CUS-00295,Hartwood Logistics Ltd,SMB,Warehousing,UK,2023-12-26,2024-01-31,Inbound,K. Lindqvist,9200.00
+CUS-00296,Northwind Express Ltd,SMB,Last-mile,UK,2025-09-09,2025-09-09,Outbound,K. Lindqvist,8100.00
+CUS-00297,Wickham Freight Ltd,SMB,Fleet management,UK,2021-09-04,2021-11-09,Inbound,M. Nakamura,11700.00
+CUS-00298,Inglewood Express Ltd,SMB,3PL,UK,2025-02-06,2025-03-01,Inbound,G. Hartley,5400.00
+CUS-00299,Wickham Carriers GmbH,SMB,Last-mile,DE,2021-10-27,2021-11-22,Outbound,I. Jamison,13800.00
+CUS-00300,Birchwood Carriers GmbH,SMB,3PL,DE,2021-12-03,2022-01-11,Inbound,E. Farouk,8400.00
+CUS-00301,Inglewood Routes Ltd,Enterprise,3PL,UK,2023-11-26,2024-01-27,Inbound,M. Nakamura,263700.00
+CUS-00302,Penwick Logistics SAS,Enterprise,Freight,FR,2021-09-08,2021-11-07,Inbound,O. Petrova,339100.00
+CUS-00303,Kestrel Transit Ltd,Mid-market,Last-mile,UK,2021-11-05,2021-12-10,Inbound,C. Doyle,71600.00
+CUS-00304,Foxgrove Cargo Ltd,SMB,Last-mile,UK,2021-08-22,2021-09-14,Inbound,G. Hartley,12500.00
+CUS-00305,Northwind Carriers Ltd,SMB,3PL,UK,2021-01-08,2021-01-31,Inbound,M. Nakamura,3400.00
+CUS-00306,Ridgemont Transit Ltd,Mid-market,Fleet management,UK,2021-11-25,2021-11-28,Partner,M. Nakamura,69700.00
+CUS-00307,Kestrel Cargo SAS,Mid-market,Freight,FR,2021-05-08,2021-07-13,Outbound,K. Lindqvist,77100.00
+CUS-00308,Linwood Freight Ltd,Mid-market,3PL,UK,2024-06-24,2024-07-27,Outbound,C. Doyle,32600.00
+CUS-00309,Inglewood Logistics Ltd,SMB,Warehousing,UK,2025-05-04,2025-06-29,Inbound,C. Doyle,13500.00
+CUS-00310,Ridgemont Routes GmbH,SMB,Warehousing,DE,2023-06-17,2023-08-04,Referral,O. Petrova,8700.00
+CUS-00311,Westmoor Express Ltd,Mid-market,Freight,UK,2022-11-21,2023-02-15,Outbound,C. Doyle,24600.00
+CUS-00312,Junction Cargo Ltd,Mid-market,Fleet management,UK,2021-12-15,2022-02-05,Inbound,M. Nakamura,36200.00
+CUS-00313,Holloway Carriers Ltd,Mid-market,3PL,UK,2022-04-01,2022-04-23,Outbound,E. Farouk,28600.00
+CUS-00314,Highland Logistics Ltd,Mid-market,Last-mile,UK,2022-05-23,2022-07-30,Inbound,A. Bennett,15500.00
+CUS-00315,Tideford Transit SAS,Mid-market,Freight,FR,2025-12-01,2026-01-22,Inbound,G. Hartley,25800.00
+CUS-00316,Linwood Routes BV,SMB,Fleet management,NL,2023-02-01,2023-04-03,Outbound,A. Bennett,6400.00
+CUS-00317,Ironclad Distribution Ltd,Mid-market,Last-mile,UK,2024-02-23,2024-04-03,Referral,M. Nakamura,18800.00
+CUS-00318,Tideford Freight Ltd,Enterprise,Warehousing,UK,2023-09-12,2023-11-07,Outbound,A. Bennett,146100.00
+CUS-00319,Yardley Cargo GmbH,SMB,Warehousing,DE,2021-05-30,2021-07-28,Partner,M. Nakamura,7000.00
+CUS-00320,Quayside Freight Ltd,Mid-market,Last-mile,UK,2022-12-27,2023-02-18,Referral,A. Bennett,77900.00
+CUS-00321,Nettleton Routes Ltd,Enterprise,Freight,UK,2021-09-16,2021-11-24,Inbound,C. Doyle,310800.00
+CUS-00322,Wexford Lanes Ltd,Mid-market,Warehousing,UK,2022-10-24,2022-12-19,Inbound,I. Jamison,57500.00
+CUS-00323,Sunnymead Routes Ltd,SMB,3PL,UK,2022-09-12,2022-09-21,Outbound,C. Doyle,11600.00
+CUS-00324,Riverside Distribution Limited,SMB,Last-mile,IE,2022-08-10,2022-09-18,Outbound,C. Doyle,11000.00
+CUS-00325,Ridgemont Carriers Ltd,Mid-market,Last-mile,UK,2021-01-06,2021-01-12,Outbound,O. Petrova,22500.00
+CUS-00326,Whitestone Cargo GmbH,Mid-market,Warehousing,DE,2021-12-13,2022-01-19,Referral,K. Lindqvist,62000.00
+CUS-00327,Crestline Distribution SAS,SMB,Freight,FR,2025-05-11,2025-08-03,Partner,K. Lindqvist,10900.00
+CUS-00328,Thornbury Lanes Ltd,SMB,3PL,UK,2024-08-06,2024-10-05,Outbound,A. Bennett,9600.00
+CUS-00329,Hartwood Cargo Ltd,SMB,Freight,UK,2023-12-11,2024-03-03,Inbound,M. Nakamura,5900.00
+CUS-00330,Tideford Carriers SAS,Mid-market,Fleet management,FR,2024-01-07,2024-01-09,Partner,O. Petrova,60600.00
+CUS-00331,Brightwater Express Limited,Mid-market,Fleet management,IE,2021-11-26,2022-01-15,Referral,C. Doyle,43400.00
+CUS-00332,Ellesmere Lanes Limited,Mid-market,Warehousing,IE,2022-03-30,2022-06-23,Partner,O. Petrova,38800.00
+CUS-00333,Thornbury Cargo Ltd,Enterprise,Warehousing,UK,2021-02-09,2021-03-27,Inbound,A. Bennett,250000.00
+CUS-00334,Highland Routes BV,SMB,Warehousing,NL,2021-03-11,2021-05-17,Outbound,K. Lindqvist,11600.00
+CUS-00335,Wickham Routes Ltd,Mid-market,Fleet management,UK,2024-11-09,2025-01-23,Inbound,I. Jamison,70700.00
+CUS-00336,Holloway Routes GmbH,Mid-market,Freight,DE,2021-11-16,2021-12-23,Inbound,G. Hartley,52100.00
+CUS-00337,Crestline Transit Ltd,Mid-market,Freight,UK,2021-11-07,2021-12-12,Inbound,A. Bennett,64400.00
+CUS-00338,Foxgrove Logistics Ltd,Mid-market,Warehousing,UK,2023-02-18,2023-03-30,Outbound,O. Petrova,77300.00
+CUS-00339,Nettleton Express Ltd,SMB,3PL,UK,2024-10-14,2024-12-21,Partner,I. Jamison,5200.00
+CUS-00340,Caldwell Express BV,Enterprise,Freight,NL,2025-07-06,2025-07-18,Inbound,G. Hartley,186800.00
+CUS-00341,Orchard Haulage SAS,SMB,Fleet management,FR,2023-03-03,2023-05-28,Outbound,E. Farouk,4600.00
+CUS-00342,Anchor Logistics Ltd,SMB,Last-mile,UK,2021-10-27,2021-12-23,Outbound,A. Bennett,14800.00
+CUS-00343,Holloway Logistics Ltd,SMB,Last-mile,UK,2024-12-20,2025-02-07,Outbound,A. Bennett,13300.00
+CUS-00344,Wickham Express GmbH,SMB,Last-mile,DE,2025-07-27,2025-08-25,Inbound,E. Farouk,11400.00
+CUS-00345,Mossbank Cargo GmbH,Enterprise,3PL,DE,2021-10-29,2021-12-29,Outbound,E. Farouk,124900.00
+CUS-00346,Granite Haulage Ltd,SMB,Warehousing,UK,2021-02-28,2021-03-24,Partner,A. Bennett,13000.00
+CUS-00347,Maple Transit Ltd,Mid-market,Fleet management,UK,2022-12-09,2023-01-04,Inbound,E. Farouk,79500.00
+CUS-00348,Thornbury Transit GmbH,Enterprise,3PL,DE,2021-08-04,2021-09-23,Inbound,C. Doyle,346700.00
+CUS-00349,Marston Cargo GmbH,SMB,Fleet management,DE,2022-02-09,2022-04-27,Outbound,G. Hartley,4700.00
+CUS-00350,Tideford Logistics SAS,Mid-market,Fleet management,FR,2021-06-23,2021-08-18,Referral,G. Hartley,75500.00
+CUS-00351,Cascade Lanes GmbH,SMB,Warehousing,DE,2024-05-17,2024-07-02,Partner,G. Hartley,5100.00
+CUS-00352,Marston Lanes Ltd,SMB,Last-mile,UK,2023-06-05,2023-07-13,Partner,C. Doyle,14700.00
+CUS-00353,Ellesmere Distribution Ltd,SMB,Warehousing,UK,2023-09-21,2023-10-06,Outbound,M. Nakamura,6200.00
+CUS-00354,Ironclad Routes BV,Enterprise,3PL,NL,2021-11-21,2021-12-12,Outbound,E. Farouk,152000.00
+CUS-00355,Anchor Lanes Ltd,Mid-market,3PL,UK,2021-07-15,2021-10-07,Inbound,I. Jamison,78700.00
+CUS-00356,Nettleton Transit Ltd,Mid-market,3PL,UK,2021-02-10,2021-04-04,Outbound,E. Farouk,38400.00
+CUS-00357,Oakridge Haulage Ltd,Mid-market,Warehousing,UK,2021-08-06,2021-08-26,Referral,A. Bennett,56500.00
+CUS-00358,Westmoor Logistics Ltd,Enterprise,Fleet management,UK,2023-07-07,2023-09-16,Outbound,K. Lindqvist,378500.00
+CUS-00359,Highland Express BV,Mid-market,Fleet management,NL,2022-10-25,2022-11-09,Referral,O. Petrova,64800.00
+CUS-00360,Marston Logistics BV,Mid-market,Freight,NL,2025-05-07,2025-07-04,Partner,O. Petrova,78300.00
+CUS-00361,Larkfield Carriers Ltd,Mid-market,3PL,UK,2021-04-17,2021-05-17,Inbound,G. Hartley,79900.00
+CUS-00362,Highland Haulage Ltd,Mid-market,Fleet management,UK,2025-11-15,2025-12-26,Referral,E. Farouk,26400.00
+CUS-00363,Stonefield Routes Ltd,Mid-market,Freight,UK,2021-10-06,2021-12-18,Inbound,I. Jamison,38300.00
+CUS-00364,Beacon Distribution Ltd,Enterprise,Fleet management,UK,2021-02-02,2021-03-05,Outbound,A. Bennett,388200.00
+CUS-00365,Quayside Routes Ltd,Mid-market,3PL,UK,2022-08-28,2022-10-25,Inbound,C. Doyle,35500.00
+CUS-00366,Greycliff Routes BV,Enterprise,Last-mile,NL,2022-10-20,2022-11-22,Inbound,M. Nakamura,309400.00
+CUS-00367,Penwick Cargo Ltd,Enterprise,3PL,UK,2021-01-08,2021-01-16,Outbound,C. Doyle,360500.00
+CUS-00368,Sterling Lanes Ltd,Mid-market,Warehousing,UK,2021-01-24,2021-04-14,Inbound,I. Jamison,27600.00
+CUS-00369,Foxgrove Lanes GmbH,Mid-market,Fleet management,DE,2025-01-18,2025-01-28,Outbound,A. Bennett,29600.00
+CUS-00370,Whitestone Freight Ltd,Mid-market,Fleet management,UK,2021-04-12,2021-04-21,Outbound,G. Hartley,26700.00
+CUS-00371,Linden Logistics Ltd,Mid-market,Warehousing,UK,2021-08-20,2021-11-13,Inbound,E. Farouk,53100.00
+CUS-00372,Wickham Distribution Ltd,SMB,Warehousing,UK,2022-08-23,2022-09-08,Inbound,A. Bennett,5700.00
+CUS-00373,Whitestone Transit GmbH,SMB,Last-mile,DE,2021-04-15,2021-06-21,Outbound,O. Petrova,5300.00
+CUS-00374,Orchard Cargo Ltd,Mid-market,Fleet management,UK,2024-12-05,2025-01-21,Inbound,M. Nakamura,73300.00
+CUS-00375,Whitestone Distribution Ltd,SMB,Fleet management,UK,2021-12-11,2022-01-31,Partner,C. Doyle,13600.00
+CUS-00376,Wickham Transit Ltd,Mid-market,Last-mile,UK,2021-11-07,2021-12-01,Partner,M. Nakamura,65800.00
+CUS-00377,Penwick Routes Limited,Mid-market,Freight,IE,2024-05-30,2024-06-19,Partner,M. Nakamura,28600.00
+CUS-00378,Sunnymead Lanes Ltd,SMB,Last-mile,UK,2022-01-05,2022-03-10,Partner,I. Jamison,7600.00
+CUS-00379,Zephyr Freight Ltd,SMB,3PL,UK,2021-04-02,2021-06-03,Outbound,I. Jamison,6200.00
+CUS-00380,Anchor Freight Ltd,SMB,Fleet management,UK,2025-12-31,2026-03-29,Partner,E. Farouk,9100.00
+CUS-00381,Pinegate Express GmbH,Enterprise,Warehousing,DE,2022-07-17,2022-09-05,Inbound,I. Jamison,81800.00
+CUS-00382,Westmoor Carriers Ltd,SMB,3PL,UK,2023-12-06,2024-01-10,Inbound,I. Jamison,9600.00
+CUS-00383,Northwind Distribution Ltd,SMB,Fleet management,UK,2022-02-06,2022-04-27,Partner,A. Bennett,10300.00
+CUS-00384,Westmoor Routes Ltd,Mid-market,Last-mile,UK,2021-05-10,2021-08-05,Outbound,O. Petrova,32400.00
+CUS-00385,Linden Lanes Ltd,SMB,3PL,UK,2023-06-02,2023-08-06,Partner,G. Hartley,13500.00
+CUS-00386,Cornerstone Lanes GmbH,Mid-market,Fleet management,DE,2024-12-13,2024-12-27,Partner,E. Farouk,59800.00
+CUS-00387,Anchor Distribution Ltd,Mid-market,Freight,UK,2023-01-30,2023-03-09,Referral,A. Bennett,50300.00
+CUS-00388,Nettleton Freight Ltd,SMB,Freight,UK,2023-04-18,2023-06-26,Referral,G. Hartley,14400.00
+CUS-00389,Redwood Routes Limited,Mid-market,Warehousing,IE,2021-06-23,2021-06-23,Outbound,M. Nakamura,29000.00
+CUS-00390,Larkfield Routes Ltd,Enterprise,Fleet management,UK,2023-09-25,2023-10-17,Inbound,A. Bennett,360500.00
+CUS-00391,Beacon Logistics Ltd,SMB,Freight,UK,2025-02-27,2025-04-06,Outbound,K. Lindqvist,3000.00
+CUS-00392,Birchwood Lanes GmbH,Mid-market,Last-mile,DE,2023-02-18,2023-04-15,Outbound,A. Bennett,24200.00
+CUS-00393,Ashford Distribution Ltd,Mid-market,Fleet management,UK,2021-03-07,2021-05-26,Outbound,I. Jamison,38800.00
+CUS-00394,Linden Transit Ltd,Mid-market,Last-mile,UK,2021-08-03,2021-09-05,Partner,G. Hartley,35400.00
+CUS-00395,Tideford Cargo GmbH,SMB,Last-mile,DE,2022-11-02,2022-12-12,Partner,E. Farouk,7700.00
+CUS-00396,Marston Distribution Ltd,Mid-market,Freight,UK,2021-02-28,2021-05-11,Outbound,E. Farouk,58200.00
+CUS-00397,Foxgrove Routes Ltd,SMB,Fleet management,UK,2024-02-15,2024-02-27,Inbound,G. Hartley,14600.00
+CUS-00398,Linwood Cargo Ltd,Enterprise,3PL,UK,2021-09-14,2021-11-22,Outbound,I. Jamison,163100.00
+CUS-00399,Inglewood Cargo Ltd,Mid-market,Freight,UK,2021-10-13,2021-10-18,Inbound,C. Doyle,46600.00
+CUS-00400,Riverside Logistics SAS,SMB,Freight,FR,2021-08-29,2021-11-20,Referral,A. Bennett,5800.00
+CUS-00401,Tideford Haulage Ltd,Mid-market,Fleet management,UK,2022-05-16,2022-07-06,Inbound,I. Jamison,44400.00
+CUS-00402,Northwind Routes Ltd,Enterprise,Fleet management,UK,2021-07-14,2021-07-16,Inbound,K. Lindqvist,348700.00
+CUS-00403,Yardley Freight SAS,SMB,Last-mile,FR,2023-03-04,2023-05-23,Inbound,O. Petrova,11700.00
+CUS-00404,Pinegate Routes Ltd,Mid-market,Fleet management,UK,2021-03-20,2021-05-21,Outbound,M. Nakamura,43100.00
+CUS-00405,Caldwell Cargo GmbH,Enterprise,Last-mile,DE,2021-03-03,2021-04-20,Outbound,G. Hartley,286400.00
+CUS-00406,Larkfield Distribution Ltd,Mid-market,Freight,UK,2021-03-03,2021-05-17,Inbound,O. Petrova,22000.00
+CUS-00407,Redwood Express SAS,Mid-market,Warehousing,FR,2021-07-01,2021-08-16,Inbound,A. Bennett,41800.00
+CUS-00408,Ellesmere Transit Ltd,SMB,3PL,UK,2021-04-01,2021-05-25,Outbound,E. Farouk,9800.00
+CUS-00409,Linwood Lanes Ltd,Mid-market,Freight,UK,2022-03-13,2022-05-15,Inbound,M. Nakamura,45400.00
+CUS-00410,Crestline Routes GmbH,SMB,Fleet management,DE,2021-09-10,2021-11-13,Partner,O. Petrova,9600.00
+CUS-00411,Cornerstone Cargo GmbH,SMB,3PL,DE,2021-02-22,2021-05-13,Outbound,C. Doyle,3600.00
+CUS-00412,Holloway Transit Ltd,SMB,Warehousing,UK,2025-10-26,2025-12-31,Outbound,O. Petrova,8700.00
+CUS-00413,Brightwater Lanes Ltd,Enterprise,Warehousing,UK,2025-03-11,2025-06-08,Inbound,K. Lindqvist,161600.00
+CUS-00414,Hartwood Freight BV,SMB,Last-mile,NL,2021-04-10,2021-04-24,Referral,E. Farouk,13200.00
+CUS-00415,Ashford Lanes Ltd,SMB,3PL,UK,2021-10-15,2021-11-15,Outbound,G. Hartley,8200.00
+CUS-00416,Saltmarsh Freight Ltd,SMB,Last-mile,UK,2022-01-23,2022-03-31,Partner,A. Bennett,9400.00
+CUS-00417,Ridgemont Express Ltd,SMB,Freight,UK,2024-06-13,2024-06-30,Inbound,G. Hartley,14200.00
+CUS-00418,Kestrel Lanes BV,Mid-market,3PL,NL,2023-12-04,2024-02-24,Outbound,M. Nakamura,72300.00
+CUS-00419,Anchor Express SAS,Mid-market,Freight,FR,2022-06-12,2022-07-24,Inbound,A. Bennett,67800.00
+CUS-00420,Northwind Haulage Ltd,Mid-market,Last-mile,UK,2025-08-09,2025-09-12,Outbound,I. Jamison,32000.00
+CUS-00421,Stonefield Express Ltd,SMB,3PL,UK,2021-09-05,2021-11-21,Referral,C. Doyle,5400.00
+CUS-00422,Beacon Express GmbH,Mid-market,Last-mile,DE,2022-05-25,2022-07-21,Outbound,I. Jamison,40000.00
+CUS-00423,Hartwood Carriers Limited,SMB,3PL,IE,2021-03-25,2021-04-26,Inbound,I. Jamison,3200.00
+CUS-00424,Kestrel Haulage GmbH,Mid-market,Last-mile,DE,2022-07-26,2022-08-08,Inbound,G. Hartley,35600.00
+CUS-00425,Quayside Lanes Ltd,SMB,Warehousing,UK,2022-12-25,2023-01-27,Outbound,M. Nakamura,5800.00
+CUS-00426,Yardley Lanes Ltd,Enterprise,Last-mile,UK,2023-04-01,2023-05-31,Inbound,C. Doyle,282600.00
+CUS-00427,Pinegate Freight Ltd,Mid-market,Warehousing,UK,2021-04-03,2021-04-06,Inbound,O. Petrova,56500.00
+CUS-00428,Sterling Logistics Ltd,Enterprise,Last-mile,UK,2025-01-25,2025-04-22,Partner,A. Bennett,364100.00
+CUS-00429,Redwood Haulage SAS,Mid-market,3PL,FR,2022-04-09,2022-06-06,Outbound,A. Bennett,52900.00
+CUS-00430,Junction Transit Ltd,Mid-market,3PL,UK,2021-11-11,2021-12-09,Inbound,K. Lindqvist,29300.00
+CUS-00431,Cornerstone Haulage Ltd,Mid-market,3PL,UK,2021-07-11,2021-10-01,Referral,E. Farouk,17400.00
+CUS-00432,Birchwood Routes GmbH,SMB,Fleet management,DE,2021-06-07,2021-06-12,Inbound,K. Lindqvist,8300.00
+CUS-00433,Vesper Lanes Ltd,SMB,Freight,UK,2021-06-17,2021-08-04,Referral,O. Petrova,5700.00
+CUS-00434,Junction Freight Ltd,SMB,3PL,UK,2023-04-19,2023-05-28,Inbound,K. Lindqvist,10200.00
+CUS-00435,Sunnymead Freight GmbH,Mid-market,Warehousing,DE,2022-04-23,2022-07-14,Referral,A. Bennett,78100.00
+CUS-00436,Granite Logistics Limited,SMB,3PL,IE,2022-05-06,2022-07-09,Outbound,G. Hartley,8500.00
+CUS-00437,Brookfield Carriers Ltd,Mid-market,Fleet management,UK,2023-01-01,2023-03-10,Partner,I. Jamison,24200.00
+CUS-00438,Ridgemont Logistics SAS,SMB,Warehousing,FR,2021-10-02,2021-10-28,Referral,M. Nakamura,15000.00
+CUS-00439,Orchard Freight Ltd,Mid-market,Fleet management,UK,2021-08-29,2021-11-16,Inbound,I. Jamison,74700.00
+CUS-00440,Redwood Freight Ltd,Mid-market,Warehousing,UK,2021-11-02,2021-11-07,Referral,I. Jamison,48500.00
+CUS-00441,Birchwood Transit Ltd,SMB,Last-mile,UK,2021-03-05,2021-03-17,Outbound,C. Doyle,7000.00
+CUS-00442,Greycliff Lanes Ltd,Enterprise,Freight,UK,2023-01-13,2023-03-17,Outbound,A. Bennett,334600.00
+CUS-00443,Kestrel Logistics Ltd,SMB,Freight,UK,2022-08-20,2022-10-20,Inbound,O. Petrova,13700.00
+CUS-00444,Stonefield Freight Ltd,SMB,Fleet management,UK,2021-07-07,2021-07-25,Outbound,O. Petrova,8000.00
+CUS-00445,Coppergate Freight GmbH,SMB,Freight,DE,2021-01-03,2021-03-19,Inbound,M. Nakamura,14700.00
+CUS-00446,Northwind Lanes Ltd,SMB,Fleet management,UK,2022-12-24,2023-03-13,Outbound,G. Hartley,13400.00
+CUS-00447,Oakridge Transit Ltd,Mid-market,Fleet management,UK,2024-04-19,2024-05-31,Outbound,C. Doyle,34800.00
+CUS-00448,Nettleton Distribution Limited,Mid-market,Fleet management,IE,2023-03-02,2023-05-14,Partner,E. Farouk,56200.00
+CUS-00449,Inglewood Haulage Ltd,Enterprise,Freight,UK,2021-10-05,2022-01-01,Partner,G. Hartley,113800.00
+CUS-00450,Oakridge Carriers Ltd,SMB,Fleet management,UK,2023-04-30,2023-05-19,Outbound,K. Lindqvist,4800.00

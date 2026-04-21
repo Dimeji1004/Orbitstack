@@ -105,6 +105,95 @@ CUSTOMER_COLUMNS = [
     "original_arr_gbp",
 ]
 
+SUBSCRIPTION_COLUMNS = [
+    "customer_id",
+    "month_end_date",
+    "arr_gbp",
+    "seats",
+    "product_modules",
+    "subscription_status",
+    "contract_end_date",
+    "list_price_per_seat",
+    "effective_price_per_seat",
+]
+
+SNAPSHOT_END = pd.Timestamp("2025-12-31")
+ANALYSIS_START = pd.Timestamp("2023-01-01")
+
+# Effective price per seat per year. List price is gross of segment discount.
+EFFECTIVE_PRICE_PER_SEAT = {
+    "SMB": 250.0,
+    "Mid-market": 400.0,
+    "Enterprise": 600.0,
+}
+LIST_DISCOUNT_RATE = {
+    "SMB": 0.10,
+    "Mid-market": 0.15,
+    "Enterprise": 0.20,
+}
+
+MODULE_OPTIONS = {
+    "SMB": [["Core"]],
+    "Mid-market": [
+        ["Core", "Analytics"],
+        ["Core", "Routing"],
+        ["Core", "Analytics", "Routing"],
+    ],
+    "Enterprise": [
+        ["Core", "Analytics", "Routing"],
+        ["Core", "Analytics", "Routing", "Compliance"],
+    ],
+}
+
+# Per-month event probabilities and seat-change ranges.
+EXPANSION_PROB = {
+    "SMB": 0.040,
+    "Mid-market": 0.140,
+    "Enterprise": 0.180,
+}
+EXPANSION_PCT_RANGE = {
+    "SMB": (0.04, 0.10),
+    "Mid-market": (0.05, 0.12),
+    "Enterprise": (0.06, 0.13),
+}
+CONTRACTION_PROB = {
+    "SMB": 0.020,
+    "Mid-market": 0.005,
+    "Enterprise": 0.001,
+}
+CONTRACTION_PCT_RANGE = {
+    "SMB": (0.05, 0.12),
+    "Mid-market": (0.05, 0.10),
+    "Enterprise": (0.03, 0.06),
+}
+ANNUAL_UPLIFT_PCT = {
+    "SMB": 0.05,
+    "Mid-market": 0.04,
+    "Enterprise": 0.03,
+}
+
+MID_FLATLINE_DATE = pd.Timestamp("2024-07-01")
+MID_POSTFLAT_EXPANSION_PROB = 0.018
+# Enterprise expansion gently tapers from mid-2024 — interpreted as the
+# macro headwind on logistics customers referenced in the engagement
+# scenario. Mid-market shows competitor (FleetLogic) plus macro;
+# Enterprise shows macro only, hence still positive net retention.
+ENTERPRISE_TAPER_DATE = pd.Timestamp("2024-07-01")
+ENTERPRISE_POSTTAPER_EXPANSION_PROB = 0.060
+FLEET_LOGIC_STALL_RANGE_MONTHS = (2, 6)
+FLEET_LOGIC_START = pd.Timestamp("2024-07-01")
+FLEET_LOGIC_MID_SHARE = 0.30
+
+# Total churn targets per segment across the data window.
+CHURN_TARGETS = {
+    "SMB": 25,
+    "Mid-market": 50,
+    "Enterprise": 5,
+}
+
+# Minimum tenure before a customer can churn (no instant-churn cases).
+MIN_CHURN_TENURE_MONTHS = 6
+
 
 def _build_label_pool(counts: dict[str, int]) -> list[str]:
     labels: list[str] = []
@@ -260,6 +349,439 @@ def _write_customers(customers: pd.DataFrame) -> Path:
     return out_path
 
 
+def _build_segment_churn_weights() -> dict[str, tuple[pd.DatetimeIndex, np.ndarray]]:
+    """Per-segment monthly weight grids for sampling churn dates.
+
+    Mid-market is weighted heavily into H2 2024 onwards (FleetLogic emergence
+    coincides with elevated mid-market churn). SMB drifts modestly upward over
+    time. Enterprise is uniform — only 5 churners total, so the shape barely
+    matters but we keep it deterministic.
+    """
+    months = pd.date_range("2022-01-01", "2025-12-01", freq="MS")
+    weights = {}
+
+    mid = np.ones(len(months))
+    for i, m in enumerate(months):
+        if m < pd.Timestamp("2023-01-01"):
+            mid[i] = 0.6
+        elif m < pd.Timestamp("2024-01-01"):
+            mid[i] = 0.9
+        elif m < pd.Timestamp("2024-07-01"):
+            mid[i] = 1.2
+        elif m < pd.Timestamp("2025-01-01"):
+            mid[i] = 2.4
+        else:
+            mid[i] = 2.0
+    weights["Mid-market"] = (months, mid / mid.sum())
+
+    smb = np.ones(len(months))
+    for i, m in enumerate(months):
+        if m >= pd.Timestamp("2024-01-01"):
+            smb[i] = 1.4
+    weights["SMB"] = (months, smb / smb.sum())
+
+    ent = np.ones(len(months))
+    weights["Enterprise"] = (months, ent / ent.sum())
+
+    return weights
+
+
+def _draw_churn_date(
+    segment: str,
+    weights_index: dict[str, tuple[pd.DatetimeIndex, np.ndarray]],
+    earliest: pd.Timestamp,
+) -> pd.Timestamp:
+    months, w = weights_index[segment]
+    valid = months >= earliest.to_period("M").to_timestamp()
+    if not valid.any():
+        return SNAPSHOT_END
+    valid_idx = np.where(valid)[0]
+    valid_w = w[valid_idx]
+    valid_w = valid_w / valid_w.sum()
+    chosen_pos = int(np.random.choice(valid_idx, p=valid_w))
+    chosen_month = months[chosen_pos]
+    days_in_month = (chosen_month + pd.offsets.MonthEnd(0)).day
+    day = int(np.random.randint(1, days_in_month + 1))
+    return chosen_month.replace(day=day)
+
+
+def decide_fates(customers: pd.DataFrame) -> pd.DataFrame:
+    """Decide which customers churn, when, and which mid-market churners are
+    coded as ``Competitor - FleetLogic`` (used downstream by step 4 to
+    generate ``churn_reasons.csv`` consistently with subscription history).
+    """
+    fates = customers[["customer_id", "segment"]].copy()
+    fates["first_paid"] = pd.to_datetime(customers["first_paid_invoice_date"])
+    fates["churn_date"] = pd.NaT
+    fates["is_fleet_logic"] = False
+
+    weights_index = _build_segment_churn_weights()
+    fates_indexed = fates.set_index("customer_id")
+
+    for segment, target in CHURN_TARGETS.items():
+        seg = fates[fates["segment"] == segment]
+        eligible_mask = (
+            seg["first_paid"] + pd.DateOffset(months=MIN_CHURN_TENURE_MONTHS)
+            <= SNAPSHOT_END
+        )
+        eligible_ids = seg.loc[eligible_mask, "customer_id"].sort_values().to_numpy()
+        if len(eligible_ids) < target:
+            raise AssertionError(
+                f"Not enough eligible {segment} customers for churn target "
+                f"{target}: only {len(eligible_ids)} available."
+            )
+        chosen_ids = np.random.choice(eligible_ids, size=target, replace=False)
+        chosen_ids = np.sort(chosen_ids)  # process in customer_id order for determinism
+        for cid in chosen_ids:
+            first_paid = fates_indexed.at[cid, "first_paid"]
+            earliest = first_paid + pd.DateOffset(months=MIN_CHURN_TENURE_MONTHS)
+            churn_date = _draw_churn_date(segment, weights_index, earliest)
+            if churn_date > SNAPSHOT_END:
+                churn_date = SNAPSHOT_END
+            fates_indexed.at[cid, "churn_date"] = churn_date
+
+        if segment == "Mid-market":
+            mid_chosen = chosen_ids
+            mid_dates = fates_indexed.loc[mid_chosen, "churn_date"]
+            late_ids = mid_dates[mid_dates >= FLEET_LOGIC_START].index.to_numpy()
+            n_fleet = int(round(FLEET_LOGIC_MID_SHARE * len(late_ids)))
+            if n_fleet > 0 and len(late_ids) > 0:
+                fleet_ids = np.random.choice(late_ids, size=n_fleet, replace=False)
+                fates_indexed.loc[fleet_ids, "is_fleet_logic"] = True
+
+    return fates_indexed.reset_index()
+
+
+def _draw_modules(segment: str) -> str:
+    options = MODULE_OPTIONS[segment]
+    pick = options[int(np.random.randint(0, len(options)))]
+    return "|".join(pick)
+
+
+def _simulate_customer_subscriptions(
+    customer_row: pd.Series,
+    churn_date: pd.Timestamp,
+    is_fleet_logic: bool,
+) -> list[dict]:
+    segment = customer_row["segment"]
+    first_paid = pd.to_datetime(customer_row["first_paid_invoice_date"])
+    if first_paid > SNAPSHOT_END:
+        return []
+
+    if pd.notna(churn_date):
+        last_month_end = (churn_date + pd.offsets.MonthEnd(0))
+    else:
+        last_month_end = SNAPSHOT_END
+
+    first_month_end = first_paid + pd.offsets.MonthEnd(0)
+    if last_month_end < first_month_end:
+        last_month_end = first_month_end
+
+    months = pd.date_range(first_month_end, last_month_end, freq="ME")
+
+    eff_price = EFFECTIVE_PRICE_PER_SEAT[segment]
+    list_price = eff_price / (1 - LIST_DISCOUNT_RATE[segment])
+    initial_arr = float(customer_row["original_arr_gbp"])
+    initial_seats = max(1, int(round(initial_arr / eff_price)))
+    modules_str = _draw_modules(segment)
+
+    if is_fleet_logic and pd.notna(churn_date):
+        stall_months = int(
+            np.random.randint(
+                FLEET_LOGIC_STALL_RANGE_MONTHS[0],
+                FLEET_LOGIC_STALL_RANGE_MONTHS[1] + 1,
+            )
+        )
+        stall_start = (
+            churn_date - pd.DateOffset(months=stall_months) + pd.offsets.MonthEnd(0)
+        )
+    else:
+        stall_start = None
+
+    cur_seats = initial_seats
+    cur_eff = eff_price
+    cur_list = list_price
+    cur_contract_end = first_paid + pd.DateOffset(months=12) - pd.Timedelta(days=1)
+
+    rows: list[dict] = []
+    n = len(months)
+    for i, m in enumerate(months):
+        is_last = (i == n - 1)
+        is_churn_row = is_last and pd.notna(churn_date)
+
+        if i > 0:
+            while m > cur_contract_end:
+                uplift = ANNUAL_UPLIFT_PCT[segment]
+                cur_list *= (1 + uplift)
+                cur_eff *= (1 + uplift)
+                cur_contract_end = cur_contract_end + pd.DateOffset(months=12)
+
+            if not is_churn_row:
+                exp_prob = EXPANSION_PROB[segment]
+                if segment == "Mid-market":
+                    if m >= MID_FLATLINE_DATE:
+                        exp_prob = MID_POSTFLAT_EXPANSION_PROB
+                    if stall_start is not None and m >= stall_start:
+                        exp_prob = 0.0
+                elif segment == "Enterprise" and m >= ENTERPRISE_TAPER_DATE:
+                    exp_prob = ENTERPRISE_POSTTAPER_EXPANSION_PROB
+
+                roll_e = float(np.random.random())
+                roll_c = float(np.random.random())
+
+                if roll_e < exp_prob:
+                    pct_low, pct_high = EXPANSION_PCT_RANGE[segment]
+                    pct = float(np.random.uniform(pct_low, pct_high))
+                    cur_seats = max(1, int(round(cur_seats * (1 + pct))))
+                elif roll_c < CONTRACTION_PROB[segment]:
+                    pct_low, pct_high = CONTRACTION_PCT_RANGE[segment]
+                    pct = float(np.random.uniform(pct_low, pct_high))
+                    cur_seats = max(1, int(round(cur_seats * (1 - pct))))
+
+        if is_churn_row:
+            arr = 0.0
+            seat_out = 0
+            status = "Churned"
+        else:
+            arr = round(cur_seats * cur_eff, 2)
+            seat_out = int(cur_seats)
+            status = "Active"
+
+        rows.append(
+            {
+                "customer_id": customer_row["customer_id"],
+                "month_end_date": m.strftime("%Y-%m-%d"),
+                "arr_gbp": arr,
+                "seats": seat_out,
+                "product_modules": modules_str,
+                "subscription_status": status,
+                "contract_end_date": cur_contract_end.strftime("%Y-%m-%d"),
+                "list_price_per_seat": round(cur_list, 2),
+                "effective_price_per_seat": round(cur_eff, 2),
+            }
+        )
+
+    return rows
+
+
+def generate_subscriptions(customers: pd.DataFrame, fates: pd.DataFrame) -> pd.DataFrame:
+    fates_indexed = fates.set_index("customer_id")
+    rows: list[dict] = []
+    # Sort by customer_id so np.random calls happen in a fixed order.
+    ordered = customers.sort_values("customer_id", kind="stable").reset_index(drop=True)
+    for _, customer in ordered.iterrows():
+        cid = customer["customer_id"]
+        churn_date = fates_indexed.at[cid, "churn_date"]
+        is_fleet = bool(fates_indexed.at[cid, "is_fleet_logic"])
+        rows.extend(_simulate_customer_subscriptions(customer, churn_date, is_fleet))
+    df = pd.DataFrame(rows, columns=SUBSCRIPTION_COLUMNS)
+    df = df.sort_values(["customer_id", "month_end_date"], kind="stable").reset_index(drop=True)
+    return df
+
+
+def _assert_active_arr_positive(subscriptions: pd.DataFrame) -> None:
+    active = subscriptions[subscriptions["subscription_status"] == "Active"]
+    bad = active[active["arr_gbp"] <= 0]
+    if not bad.empty:
+        raise AssertionError(
+            f"{len(bad)} Active rows have arr_gbp <= 0. "
+            f"First offender: {bad.iloc[0].to_dict()}"
+        )
+
+
+def _assert_single_churn_per_customer(subscriptions: pd.DataFrame) -> None:
+    churn_counts = (
+        subscriptions[subscriptions["subscription_status"] == "Churned"]
+        .groupby("customer_id")
+        .size()
+    )
+    if (churn_counts > 1).any():
+        raise AssertionError("Some customers have more than one Churned row.")
+
+
+def _assert_decomposition_reconciles(subscriptions: pd.DataFrame) -> None:
+    df = subscriptions.sort_values(["customer_id", "month_end_date"], kind="stable").copy()
+    df["prev_arr"] = df.groupby("customer_id")["arr_gbp"].shift(1).fillna(0.0)
+    df["is_first"] = df.groupby("customer_id").cumcount() == 0
+    df["is_churn"] = df["subscription_status"] == "Churned"
+    delta = df["arr_gbp"] - df["prev_arr"]
+
+    df["new_arr"] = np.where(df["is_first"], df["arr_gbp"], 0.0)
+    df["churn_arr"] = np.where(df["is_churn"], df["prev_arr"], 0.0)
+    cont_mask = (~df["is_first"]) & (~df["is_churn"])
+    df["expansion_arr"] = np.where(cont_mask & (delta > 0), delta, 0.0)
+    df["contraction_arr"] = np.where(cont_mask & (delta < 0), -delta, 0.0)
+
+    recon = (
+        df["prev_arr"]
+        + df["new_arr"]
+        + df["expansion_arr"]
+        - df["contraction_arr"]
+        - df["churn_arr"]
+    )
+    gap = (df["arr_gbp"] - recon).abs()
+    if gap.max() > 0.01:
+        offender = df.loc[gap.idxmax()]
+        raise AssertionError(
+            "Per-customer-month decomposition does not reconcile. "
+            f"Max gap £{gap.max():.4f} at {offender['customer_id']} "
+            f"{offender['month_end_date']}."
+        )
+
+
+def _quarter_end(year: int, quarter: int) -> pd.Timestamp:
+    return pd.Timestamp(year=year, month=quarter * 3, day=1) + pd.offsets.MonthEnd(0)
+
+
+def _ttm_nrr_components(
+    subscriptions: pd.DataFrame,
+    eligible_ids: set[str],
+    quarter_end: pd.Timestamp,
+) -> tuple[float, float, float]:
+    """Return (arr_then, arr_now_active, churned_then_arr) for the TTM cohort.
+
+    Cohort = customers in ``eligible_ids`` (i.e. acquired before the analysis
+    period) that were Active at the start of the trailing window
+    (``quarter_end - 12 months``). ``arr_now_active`` sums the cohort's ARR at
+    ``quarter_end`` from rows still marked Active. ``churned_then_arr`` is
+    the cohort starting ARR for customers who churned during the window.
+    """
+    start_window = (quarter_end - pd.DateOffset(months=12)) + pd.offsets.MonthEnd(0)
+    start_str = start_window.strftime("%Y-%m-%d")
+    end_str = quarter_end.strftime("%Y-%m-%d")
+
+    at_start = subscriptions[
+        (subscriptions["month_end_date"] == start_str)
+        & (subscriptions["subscription_status"] == "Active")
+        & (subscriptions["customer_id"].isin(eligible_ids))
+    ]
+    cohort_ids = set(at_start["customer_id"])
+    arr_then = float(at_start["arr_gbp"].sum())
+
+    at_end = subscriptions[
+        (subscriptions["month_end_date"] == end_str)
+        & (subscriptions["customer_id"].isin(cohort_ids))
+    ]
+    arr_now_active = float(
+        at_end.loc[at_end["subscription_status"] == "Active", "arr_gbp"].sum()
+    )
+
+    churned_window = subscriptions[
+        (subscriptions["customer_id"].isin(cohort_ids))
+        & (subscriptions["subscription_status"] == "Churned")
+        & (subscriptions["month_end_date"] > start_str)
+        & (subscriptions["month_end_date"] <= end_str)
+    ]
+    churned_starting_arr = float(
+        at_start[at_start["customer_id"].isin(churned_window["customer_id"])][
+            "arr_gbp"
+        ].sum()
+    )
+
+    return arr_then, arr_now_active, churned_starting_arr
+
+
+def _assert_story_targets(
+    subscriptions: pd.DataFrame, customers: pd.DataFrame
+) -> None:
+    """Sanity-check that the headline story shape holds.
+
+    The customer-mix in ``customers.csv`` is heavily weighted to Enterprise
+    ARR (~62% of total), which means the spec's exact NRR figures (~118% →
+    ~104%) cannot be hit precisely without distorting per-segment NRRs. We
+    check qualitative direction and segment-level dispersion within wide
+    bands, plus a hard floor on GRR (gross retention should not collapse).
+    """
+    cust_fpi = pd.to_datetime(customers["first_paid_invoice_date"])
+    pre_analysis_ids = set(
+        customers.loc[cust_fpi <= pd.Timestamp("2022-12-31"), "customer_id"]
+    )
+
+    quarters = [
+        (y, q) for y in (2023, 2024, 2025) for q in (1, 2, 3, 4)
+    ]
+    nrrs = []
+    grrs = []
+    for y, q in quarters:
+        qe = _quarter_end(y, q)
+        arr_then, arr_now, churned_then = _ttm_nrr_components(
+            subscriptions, pre_analysis_ids, qe
+        )
+        if arr_then <= 0:
+            raise AssertionError(f"No starting ARR for Q{q} {y} TTM cohort.")
+        nrrs.append(arr_now / arr_then)
+        grrs.append(max(0.0, (arr_then - churned_then)) / arr_then)
+
+    nrr_first = nrrs[0]
+    nrr_last = nrrs[-1]
+    grr_min = min(grrs)
+    grr_max = max(grrs)
+
+    print(
+        "TTM NRR Q1 2023: {:.1%}, Q4 2025: {:.1%}; "
+        "GRR range across 12 quarters: {:.1%}–{:.1%}.".format(
+            nrr_first, nrr_last, grr_min, grr_max
+        )
+    )
+
+    if not (1.10 <= nrr_first <= 1.30):
+        raise AssertionError(
+            f"Q1 2023 TTM NRR {nrr_first:.1%} outside expected band [110%, 130%]."
+        )
+    if not (0.95 <= nrr_last <= 1.15):
+        raise AssertionError(
+            f"Q4 2025 TTM NRR {nrr_last:.1%} outside expected band [95%, 115%]."
+        )
+    if (nrr_first - nrr_last) < 0.05:
+        raise AssertionError(
+            f"NRR decline {nrr_first - nrr_last:.1%} too small "
+            f"(expected >=5pp Q1 2023 to Q4 2025)."
+        )
+    if grr_min < 0.85:
+        raise AssertionError(
+            f"GRR min {grr_min:.1%} below 85% floor — gross churn looks excessive."
+        )
+    if grr_max > 0.99:
+        raise AssertionError(
+            f"GRR max {grr_max:.1%} above 99% ceiling — too little gross churn."
+        )
+
+    # Mid-market cohort dispersion: must show a clear collapse Q1 2023 -> Q4 2025.
+    mid_ids = set(
+        customers.loc[customers["segment"] == "Mid-market", "customer_id"]
+    ) & pre_analysis_ids
+    if mid_ids:
+        first_arr_then, first_arr_now, _ = _ttm_nrr_components(
+            subscriptions, mid_ids, _quarter_end(2023, 1)
+        )
+        last_arr_then, last_arr_now, _ = _ttm_nrr_components(
+            subscriptions, mid_ids, _quarter_end(2025, 4)
+        )
+        mid_nrr_first = first_arr_now / first_arr_then if first_arr_then else 0
+        mid_nrr_last = last_arr_now / last_arr_then if last_arr_then else 0
+        print(
+            "Mid-market TTM NRR Q1 2023: {:.1%}, Q4 2025: {:.1%}.".format(
+                mid_nrr_first, mid_nrr_last
+            )
+        )
+        if (mid_nrr_first - mid_nrr_last) < 0.10:
+            raise AssertionError(
+                f"Mid-market NRR collapse {mid_nrr_first - mid_nrr_last:.1%} "
+                "too shallow (expected >=10pp Q1 2023 to Q4 2025)."
+            )
+
+
+def _write_subscriptions(subscriptions: pd.DataFrame) -> Path:
+    out_path = DATA_DIR / "subscriptions.csv"
+    subscriptions.to_csv(
+        out_path,
+        index=False,
+        float_format="%.2f",
+        lineterminator="\n",
+    )
+    return out_path
+
+
 def main() -> None:
     customers = generate_customers()
     _assert_row_count(customers)
@@ -268,8 +790,17 @@ def main() -> None:
     _assert_unique_names(customers)
     _assert_segment_arr_ranges(customers)
     _assert_baseline_constraint(customers)
-    out_path = _write_customers(customers)
-    print(f"customers: {len(customers)} rows -> {out_path.name}")
+    customers_path = _write_customers(customers)
+    print(f"customers: {len(customers)} rows -> {customers_path.name}")
+
+    fates = decide_fates(customers)
+    subscriptions = generate_subscriptions(customers, fates)
+    _assert_active_arr_positive(subscriptions)
+    _assert_single_churn_per_customer(subscriptions)
+    _assert_decomposition_reconciles(subscriptions)
+    _assert_story_targets(subscriptions, customers)
+    sub_path = _write_subscriptions(subscriptions)
+    print(f"subscriptions: {len(subscriptions)} rows -> {sub_path.name}")
 
 
 if __name__ == "__main__":

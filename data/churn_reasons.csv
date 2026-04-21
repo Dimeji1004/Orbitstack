@@ -1,0 +1,81 @@
+customer_id,churn_date,primary_reason,competitor_won_to,csm_notes
+CUS-00009,2025-02-12,Cost,,Pushed back on annual uplift; finance team requested a cheaper alternative.
+CUS-00010,2025-07-19,Competitor - other,CargoHub Cloud,Replaced by a sister-brand platform after parent reorganisation.
+CUS-00012,2023-03-24,Acquisition/closure,,Acquired by a larger 3PL; consolidating tools.
+CUS-00030,2025-03-25,Competitor - other,Logivia,Selected a regional Benelux provider on procurement preference.
+CUS-00031,2025-10-18,Competitor - FleetLogic,FleetLogic,Renewal lost to FleetLogic on integrated proposition.
+CUS-00036,2023-03-07,Competitor - other,Logivia,Replaced by a sister-brand platform after parent reorganisation.
+CUS-00048,2025-09-21,Cost,,Customer flagged pricing concerns at last QBR.
+CUS-00055,2024-09-25,Competitor - FleetLogic,FleetLogic,Switched to FleetLogic; cited bundled telematics and routing.
+CUS-00061,2025-04-11,Non-payment,,Multiple invoices unpaid; subscription suspended then closed.
+CUS-00066,2024-10-08,Competitor - FleetLogic,FleetLogic,Moved to FleetLogic for integrated fleet telematics.
+CUS-00076,2025-02-28,Cost,,Procurement review escalated; could not justify renewal at current price.
+CUS-00079,2024-08-24,Acquisition/closure,,Parent group consolidating onto a single platform post-merger.
+CUS-00080,2024-11-03,Product fit,,Use case shifted toward warehouse robotics; not a fit for our roadmap.
+CUS-00085,2023-06-17,Cost,,Pushed back on annual uplift; finance team requested a cheaper alternative.
+CUS-00086,2025-07-06,Competitor - FleetLogic,FleetLogic,Pilot of FleetLogic during renewal window converted into a full switch.
+CUS-00093,2024-12-31,Product fit,,Operations team chose a vertical-specific tool for last-mile.
+CUS-00096,2025-03-18,Cost,,Pushed back on annual uplift; finance team requested a cheaper alternative.
+CUS-00104,2024-11-25,Competitor - FleetLogic,FleetLogic,Renewal lost to FleetLogic on integrated proposition.
+CUS-00105,2025-01-04,Product fit,,Use case shifted toward warehouse robotics; not a fit for our roadmap.
+CUS-00107,2024-03-15,Product fit,,Compliance module did not cover their freight forwarding scope.
+CUS-00109,2025-12-14,Competitor - other,CargoHub Cloud,Renewed with a competing TMS bundled into their carrier deal.
+CUS-00123,2024-04-26,Cost,,Procurement review escalated; could not justify renewal at current price.
+CUS-00124,2025-02-04,Competitor - other,RouteForce,Renewed with a competing TMS bundled into their carrier deal.
+CUS-00130,2025-12-08,Product fit,,Use case shifted toward warehouse robotics; not a fit for our roadmap.
+CUS-00141,2025-01-16,Non-payment,,Direct debit failures across two cycles; renewal lapsed.
+CUS-00142,2023-05-13,Other,,Internal restructure; commercial sponsor moved on without succession.
+CUS-00144,2024-05-27,Cost,,Procurement review escalated; could not justify renewal at current price.
+CUS-00146,2025-04-29,Cost,,Procurement review escalated; could not justify renewal at current price.
+CUS-00157,2024-08-06,Cost,,Procurement review escalated; could not justify renewal at current price.
+CUS-00174,2025-08-21,Competitor - FleetLogic,FleetLogic,Pilot of FleetLogic during renewal window converted into a full switch.
+CUS-00193,2024-08-25,Cost,,Customer flagged pricing concerns at last QBR.
+CUS-00196,2024-05-28,Competitor - other,Logivia,Moved to incumbent ERP add-on after group standardisation.
+CUS-00203,2024-09-22,Competitor - FleetLogic,FleetLogic,Moved to FleetLogic for integrated fleet telematics.
+CUS-00212,2025-07-22,Product fit,,Compliance module did not cover their freight forwarding scope.
+CUS-00218,2024-12-06,Product fit,,Compliance module did not cover their freight forwarding scope.
+CUS-00221,2023-08-29,Cost,,Pushed back on annual uplift; finance team requested a cheaper alternative.
+CUS-00223,2025-12-08,Competitor - other,TransitOne,Renewed with a competing TMS bundled into their carrier deal.
+CUS-00233,2025-07-11,Cost,,Held a price-down workshop; commercial gap remained too large to bridge.
+CUS-00234,2024-05-06,Other,,Internal restructure; commercial sponsor moved on without succession.
+CUS-00240,2024-07-03,Competitor - FleetLogic,FleetLogic,Renewal lost to FleetLogic on integrated proposition.
+CUS-00250,2025-04-29,Cost,,Held a price-down workshop; commercial gap remained too large to bridge.
+CUS-00251,2025-12-27,Cost,,Customer flagged pricing concerns at last QBR.
+CUS-00261,2024-04-27,Competitor - other,Logivia,Moved to incumbent ERP add-on after group standardisation.
+CUS-00264,2025-09-05,Cost,,Pushed back on annual uplift; finance team requested a cheaper alternative.
+CUS-00269,2024-07-25,Competitor - other,Logivia,Moved to incumbent ERP add-on after group standardisation.
+CUS-00271,2025-05-20,Product fit,,Reporting requirements outgrew our standard exports.
+CUS-00273,2024-11-23,Non-payment,,Outstanding balance unresolved at renewal; account closed for cause.
+CUS-00274,2022-03-31,Cost,,Customer flagged pricing concerns at last QBR.
+CUS-00280,2023-08-26,Product fit,,Reporting requirements outgrew our standard exports.
+CUS-00281,2025-10-14,Other,,Internal restructure; commercial sponsor moved on without succession.
+CUS-00284,2024-10-31,Cost,,Procurement review escalated; could not justify renewal at current price.
+CUS-00285,2025-04-13,Cost,,Procurement review escalated; could not justify renewal at current price.
+CUS-00291,2025-01-10,Other,,Internal restructure; commercial sponsor moved on without succession.
+CUS-00308,2025-10-20,Cost,,Held a price-down workshop; commercial gap remained too large to bridge.
+CUS-00309,2025-12-28,Non-payment,,Outstanding balance unresolved at renewal; account closed for cause.
+CUS-00311,2024-09-17,Product fit,,Compliance module did not cover their freight forwarding scope.
+CUS-00313,2023-08-01,Competitor - other,Logivia,Selected a regional Benelux provider on procurement preference.
+CUS-00314,2024-12-13,Acquisition/closure,,Parent group consolidating onto a single platform post-merger.
+CUS-00322,2023-11-26,Cost,,Procurement review escalated; could not justify renewal at current price.
+CUS-00345,2024-01-02,Acquisition/closure,,Site closure following parent restructure; subscription wound down.
+CUS-00350,2023-10-27,Competitor - other,CargoHub Cloud,Selected a regional Benelux provider on procurement preference.
+CUS-00352,2025-01-27,Cost,,Customer flagged pricing concerns at last QBR.
+CUS-00353,2025-01-21,Cost,,Held a price-down workshop; commercial gap remained too large to bridge.
+CUS-00355,2022-08-14,Competitor - other,TransitOne,Selected a regional Benelux provider on procurement preference.
+CUS-00356,2024-12-27,Competitor - other,Logivia,Replaced by a sister-brand platform after parent reorganisation.
+CUS-00363,2023-12-27,Cost,,Held a price-down workshop; commercial gap remained too large to bridge.
+CUS-00367,2022-10-24,Acquisition/closure,,Trade sale completed; new owner moving onto in-house systems.
+CUS-00370,2024-12-05,Cost,,Procurement review escalated; could not justify renewal at current price.
+CUS-00374,2025-09-25,Cost,,Pushed back on annual uplift; finance team requested a cheaper alternative.
+CUS-00392,2025-05-23,Product fit,,Reporting requirements outgrew our standard exports.
+CUS-00394,2024-09-18,Cost,,Held a price-down workshop; commercial gap remained too large to bridge.
+CUS-00400,2025-12-04,Cost,,Pushed back on annual uplift; finance team requested a cheaper alternative.
+CUS-00401,2024-11-30,Competitor - FleetLogic,FleetLogic,Moved to FleetLogic for integrated fleet telematics.
+CUS-00408,2025-07-10,Product fit,,Use case shifted toward warehouse robotics; not a fit for our roadmap.
+CUS-00419,2025-12-18,Competitor - other,TransitOne,Selected a regional Benelux provider on procurement preference.
+CUS-00427,2024-07-30,Competitor - other,Haulpath,Renewed with a competing TMS bundled into their carrier deal.
+CUS-00435,2024-10-11,Competitor - FleetLogic,FleetLogic,Renewal lost to FleetLogic on integrated proposition.
+CUS-00438,2025-01-25,Product fit,,Compliance module did not cover their freight forwarding scope.
+CUS-00441,2024-04-11,Non-payment,,Outstanding balance unresolved at renewal; account closed for cause.
+CUS-00447,2024-11-21,Competitor - FleetLogic,FleetLogic,Switched to FleetLogic; cited bundled telematics and routing.

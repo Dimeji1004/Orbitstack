@@ -117,6 +117,73 @@ SUBSCRIPTION_COLUMNS = [
     "effective_price_per_seat",
 ]
 
+CHURN_REASON_COLUMNS = [
+    "customer_id",
+    "churn_date",
+    "primary_reason",
+    "competitor_won_to",
+    "csm_notes",
+]
+
+OTHER_COMPETITORS = [
+    "RouteForce",
+    "TransitOne",
+    "CargoHub Cloud",
+    "Logivia",
+    "Haulpath",
+]
+
+CSM_NOTE_TEMPLATES = {
+    "Cost": [
+        "Customer flagged pricing concerns at last QBR.",
+        "Pushed back on annual uplift; finance team requested a cheaper alternative.",
+        "Procurement review escalated; could not justify renewal at current price.",
+        "Held a price-down workshop; commercial gap remained too large to bridge.",
+    ],
+    "Product fit": [
+        "Use case shifted toward warehouse robotics; not a fit for our roadmap.",
+        "Reporting requirements outgrew our standard exports.",
+        "Operations team chose a vertical-specific tool for last-mile.",
+        "Compliance module did not cover their freight forwarding scope.",
+    ],
+    "Competitor - FleetLogic": [
+        "Moved to FleetLogic for integrated fleet telematics.",
+        "Switched to FleetLogic; cited bundled telematics and routing.",
+        "Renewal lost to FleetLogic on integrated proposition.",
+        "Pilot of FleetLogic during renewal window converted into a full switch.",
+    ],
+    "Competitor - other": [
+        "Moved to incumbent ERP add-on after group standardisation.",
+        "Selected a regional Benelux provider on procurement preference.",
+        "Renewed with a competing TMS bundled into their carrier deal.",
+        "Replaced by a sister-brand platform after parent reorganisation.",
+    ],
+    "Acquisition/closure": [
+        "Acquired by a larger 3PL; consolidating tools.",
+        "Parent group consolidating onto a single platform post-merger.",
+        "Site closure following parent restructure; subscription wound down.",
+        "Trade sale completed; new owner moving onto in-house systems.",
+    ],
+    "Non-payment": [
+        "Account moved to collections; no engagement on renewal.",
+        "Multiple invoices unpaid; subscription suspended then closed.",
+        "Direct debit failures across two cycles; renewal lapsed.",
+        "Outstanding balance unresolved at renewal; account closed for cause.",
+    ],
+    "Other": [
+        "Internal restructure; commercial sponsor moved on without succession.",
+        "Contract lapsed without renewal conversation.",
+        "Project team disbanded; tooling decommissioned.",
+        "Pilot programme ended without sign-off from the new operations lead.",
+    ],
+}
+
+QUIRK_A_COUNT = 3
+QUIRK_B_UPLIFT_GBP = 500.0
+QUIRK_C_COUNT = 5
+QUIRK_C_OFFSET_RANGE_DAYS = (30, 91)  # high exclusive — yields 30..90 days
+ELIGIBLE_QUIRK_MIN_ACTIVE_MONTHS = 18
+
 SNAPSHOT_END = pd.Timestamp("2025-12-31")
 ANALYSIS_START = pd.Timestamp("2023-01-01")
 
@@ -782,6 +849,263 @@ def _write_subscriptions(subscriptions: pd.DataFrame) -> Path:
     return out_path
 
 
+def _apply_quirks_a_b(subscriptions: pd.DataFrame, fates: pd.DataFrame) -> pd.DataFrame:
+    """Inject Quirk A (three £1 single-month dips) and Quirk B (one backdated
+    month-6 uplift) into the subscription frame.
+
+    Quirk A targets a stable mid-history month (prev = current = next ARR) and
+    knocks the middle month down by exactly £1 — the canonical billing-system
+    rounding glitch shape.
+
+    Quirk B mimics an unrecorded mid-contract uplift later reconciled: month 6
+    gets a £500 bump while months 5 and 7 remain at the natural baseline.
+    """
+    df = subscriptions.copy()
+    fates_idx = fates.set_index("customer_id")
+
+    active_mask = df["subscription_status"] == "Active"
+    active_counts = df[active_mask].groupby("customer_id").size()
+
+    non_churner_ids = fates_idx[fates_idx["churn_date"].isna()].index.to_numpy()
+    eligible = np.array(sorted(
+        cid for cid in non_churner_ids
+        if active_counts.get(cid, 0) >= ELIGIBLE_QUIRK_MIN_ACTIVE_MONTHS
+    ))
+    if len(eligible) < QUIRK_A_COUNT + 1:
+        raise AssertionError(
+            f"Only {len(eligible)} eligible customers for DQ quirks A/B; "
+            f"need at least {QUIRK_A_COUNT + 1}."
+        )
+
+    quirk_a_ids = np.sort(
+        np.random.choice(eligible, size=QUIRK_A_COUNT, replace=False)
+    )
+    for cid in quirk_a_ids:
+        cust_idx = df.index[(df["customer_id"] == cid) & active_mask].sort_values()
+        arrs = df.loc[cust_idx, "arr_gbp"].to_numpy()
+        n = len(arrs)
+        stable_positions = [
+            i for i in range(6, n - 4)
+            if arrs[i - 1] == arrs[i] == arrs[i + 1]
+        ]
+        if not stable_positions:
+            raise AssertionError(
+                f"No stable mid-history month found for Quirk A on {cid}."
+            )
+        pos = int(np.random.choice(stable_positions))
+        df.at[cust_idx[pos], "arr_gbp"] = round(float(arrs[pos]) - 1.0, 2)
+
+    quirk_b_pool = [c for c in eligible if c not in set(quirk_a_ids)]
+    valid_b_ids: list[str] = []
+    for cid in quirk_b_pool:
+        cust_idx = df.index[(df["customer_id"] == cid) & active_mask].sort_values()
+        arrs = df.loc[cust_idx, "arr_gbp"].to_numpy()
+        if len(arrs) >= 8 and arrs[4] == arrs[5] == arrs[6]:
+            valid_b_ids.append(cid)
+    if not valid_b_ids:
+        raise AssertionError("No eligible customer found for Quirk B.")
+    quirk_b_id = str(np.random.choice(np.array(valid_b_ids)))
+    cust_idx = df.index[(df["customer_id"] == quirk_b_id) & active_mask].sort_values()
+    arrs = df.loc[cust_idx, "arr_gbp"].to_numpy()
+    df.at[cust_idx[5], "arr_gbp"] = round(float(arrs[5]) + QUIRK_B_UPLIFT_GBP, 2)
+
+    return df
+
+
+def _apply_quirk_c(customers: pd.DataFrame) -> pd.DataFrame:
+    """Document five customers whose acquisition_date precedes
+    first_paid_invoice_date by 1–3 months (free-trial period not reflected in
+    the CRM record). Acquisition dates are shifted earlier in place; downstream
+    flows do not consume acquisition_date so the perturbation is local.
+    """
+    df = customers.copy()
+    sorted_df = df.sort_values("customer_id", kind="stable").reset_index(drop=True)
+    chosen_pos = np.sort(
+        np.random.choice(len(sorted_df), size=QUIRK_C_COUNT, replace=False)
+    )
+    low, high = QUIRK_C_OFFSET_RANGE_DAYS
+    offsets = np.random.randint(low, high, size=QUIRK_C_COUNT)
+    for pos, off in zip(chosen_pos, offsets):
+        cid = sorted_df.iloc[int(pos)]["customer_id"]
+        fpi = pd.to_datetime(sorted_df.iloc[int(pos)]["first_paid_invoice_date"])
+        new_acq = (fpi - pd.Timedelta(days=int(off))).strftime("%Y-%m-%d")
+        df.loc[df["customer_id"] == cid, "acquisition_date"] = new_acq
+    return df
+
+
+def _draw_csm_note(reason: str) -> str:
+    pool = CSM_NOTE_TEMPLATES[reason]
+    return pool[int(np.random.randint(0, len(pool)))]
+
+
+def _draw_competitor_won_to(reason: str) -> str:
+    if reason == "Competitor - FleetLogic":
+        return "FleetLogic"
+    if reason == "Competitor - other":
+        return OTHER_COMPETITORS[int(np.random.randint(0, len(OTHER_COMPETITORS)))]
+    return ""
+
+
+def _assign_reason(segment: str, is_fleet_logic: bool) -> str:
+    if is_fleet_logic:
+        return "Competitor - FleetLogic"
+    if segment == "Enterprise":
+        return str(np.random.choice(
+            ["Acquisition/closure", "Other", "Cost"],
+            p=[0.7, 0.2, 0.1],
+        ))
+    if segment == "SMB":
+        return str(np.random.choice(
+            ["Cost", "Product fit", "Non-payment", "Other"],
+            p=[0.45, 0.30, 0.15, 0.10],
+        ))
+    return str(np.random.choice(
+        ["Cost", "Product fit", "Competitor - other", "Acquisition/closure", "Other"],
+        p=[0.30, 0.25, 0.25, 0.10, 0.10],
+    ))
+
+
+def generate_churn_reasons(customers: pd.DataFrame, fates: pd.DataFrame) -> pd.DataFrame:
+    """Build one row per churned customer with reason, optional competitor and
+    a plausible CSM note. FleetLogic assignment is governed by the
+    ``is_fleet_logic`` flag set in ``decide_fates`` — that flag is only true for
+    mid-market customers churning on or after 2024-07-01, which enforces the
+    competitor's temporal gate at source.
+    """
+    fates_local = fates.copy()
+    fates_local["churn_date"] = pd.to_datetime(fates_local["churn_date"])
+    churners = (
+        fates_local[fates_local["churn_date"].notna()]
+        .sort_values("customer_id", kind="stable")
+        .reset_index(drop=True)
+    )
+
+    rows: list[dict] = []
+    for _, row in churners.iterrows():
+        reason = _assign_reason(row["segment"], bool(row["is_fleet_logic"]))
+        won_to = _draw_competitor_won_to(reason)
+        notes = _draw_csm_note(reason)
+        rows.append(
+            {
+                "customer_id": row["customer_id"],
+                "churn_date": row["churn_date"].strftime("%Y-%m-%d"),
+                "primary_reason": reason,
+                "competitor_won_to": won_to,
+                "csm_notes": notes,
+            }
+        )
+
+    df = pd.DataFrame(rows, columns=CHURN_REASON_COLUMNS)
+    df = df.sort_values("customer_id", kind="stable").reset_index(drop=True)
+    return df
+
+
+def _write_churn_reasons(churn_reasons: pd.DataFrame) -> Path:
+    out_path = DATA_DIR / "churn_reasons.csv"
+    churn_reasons.to_csv(out_path, index=False, lineterminator="\n")
+    return out_path
+
+
+def _assert_quirks_present(subscriptions: pd.DataFrame) -> None:
+    s = subscriptions.sort_values(
+        ["customer_id", "month_end_date"], kind="stable"
+    ).copy()
+    s["prev_arr"] = s.groupby("customer_id")["arr_gbp"].shift(1)
+    s["next_arr"] = s.groupby("customer_id")["arr_gbp"].shift(-1)
+
+    a_dips = s[
+        (s["subscription_status"] == "Active")
+        & ((s["prev_arr"] - s["arr_gbp"]).round(2) == 1.0)
+        & ((s["next_arr"] - s["arr_gbp"]).round(2) == 1.0)
+    ]
+    if len(a_dips) != QUIRK_A_COUNT:
+        raise AssertionError(
+            f"Quirk A: expected {QUIRK_A_COUNT} dips, found {len(a_dips)}."
+        )
+
+    b_uplifts = s[
+        (s["subscription_status"] == "Active")
+        & ((s["arr_gbp"] - s["prev_arr"]).round(2) == QUIRK_B_UPLIFT_GBP)
+        & ((s["arr_gbp"] - s["next_arr"]).round(2) == QUIRK_B_UPLIFT_GBP)
+    ]
+    if len(b_uplifts) != 1:
+        raise AssertionError(
+            f"Quirk B: expected 1 backdated uplift, found {len(b_uplifts)}."
+        )
+
+
+def _assert_quirk_c(customers: pd.DataFrame) -> None:
+    acq = pd.to_datetime(customers["acquisition_date"])
+    fpi = pd.to_datetime(customers["first_paid_invoice_date"])
+    gap_days = (fpi - acq).dt.days
+    flagged = customers[(gap_days >= 30) & (gap_days <= 90)]
+    if len(flagged) < QUIRK_C_COUNT:
+        raise AssertionError(
+            f"Quirk C: expected at least {QUIRK_C_COUNT} customers with "
+            f"30–90 day acquisition/billing gap, found {len(flagged)}."
+        )
+
+
+def _assert_churn_reasons(
+    churn_reasons: pd.DataFrame, customers: pd.DataFrame
+) -> None:
+    cust_seg = customers.set_index("customer_id")["segment"]
+    cr = churn_reasons.copy()
+    cr["churn_date"] = pd.to_datetime(cr["churn_date"])
+    cr["segment"] = cr["customer_id"].map(cust_seg)
+
+    if cr["customer_id"].duplicated().any():
+        raise AssertionError("churn_reasons.csv has duplicate customer_id rows.")
+    if cr["primary_reason"].isna().any():
+        raise AssertionError("churn_reasons.csv has rows missing primary_reason.")
+    if cr["csm_notes"].str.strip().eq("").any():
+        raise AssertionError("churn_reasons.csv has empty csm_notes entries.")
+
+    fleet = cr[cr["primary_reason"] == "Competitor - FleetLogic"]
+    if (fleet["churn_date"] < FLEET_LOGIC_START).any():
+        raise AssertionError("FleetLogic churn date precedes 2024-07-01.")
+    if (fleet["segment"] != "Mid-market").any():
+        raise AssertionError("Non-mid-market customer assigned FleetLogic reason.")
+
+    ent = cr[cr["segment"] == "Enterprise"]
+    if len(ent) > CHURN_TARGETS["Enterprise"]:
+        raise AssertionError(
+            f"Enterprise churn count {len(ent)} exceeds target "
+            f"{CHURN_TARGETS['Enterprise']}."
+        )
+
+    smb = cr[cr["segment"] == "SMB"]
+    if len(smb) > 0:
+        smb_cf = smb[smb["primary_reason"].isin(["Cost", "Product fit"])]
+        share = len(smb_cf) / len(smb)
+        if share < 0.5:
+            raise AssertionError(
+                f"SMB Cost+Product-fit share {share:.1%} below 50% floor."
+            )
+
+    mid = cr[cr["segment"] == "Mid-market"]
+    mid_window = mid[mid["churn_date"] >= FLEET_LOGIC_START]
+    if len(mid_window) > 0:
+        fleet_mid = mid_window[mid_window["primary_reason"] == "Competitor - FleetLogic"]
+        share = len(fleet_mid) / len(mid_window)
+        if not (0.15 <= share <= 0.45):
+            raise AssertionError(
+                f"FleetLogic share of mid-market H2-2024+ churn {share:.1%} "
+                f"outside [15%, 45%]."
+            )
+
+    competitor_rows = cr[cr["primary_reason"].str.startswith("Competitor")]
+    if competitor_rows["competitor_won_to"].str.strip().eq("").any():
+        raise AssertionError(
+            "competitor_won_to is empty on a Competitor primary_reason row."
+        )
+    non_competitor = cr[~cr["primary_reason"].str.startswith("Competitor")]
+    if non_competitor["competitor_won_to"].str.strip().ne("").any():
+        raise AssertionError(
+            "competitor_won_to populated on a non-Competitor row."
+        )
+
+
 def main() -> None:
     customers = generate_customers()
     _assert_row_count(customers)
@@ -790,17 +1114,27 @@ def main() -> None:
     _assert_unique_names(customers)
     _assert_segment_arr_ranges(customers)
     _assert_baseline_constraint(customers)
-    customers_path = _write_customers(customers)
-    print(f"customers: {len(customers)} rows -> {customers_path.name}")
 
     fates = decide_fates(customers)
     subscriptions = generate_subscriptions(customers, fates)
+    subscriptions = _apply_quirks_a_b(subscriptions, fates)
+    churn_reasons = generate_churn_reasons(customers, fates)
+    customers = _apply_quirk_c(customers)
+
     _assert_active_arr_positive(subscriptions)
     _assert_single_churn_per_customer(subscriptions)
     _assert_decomposition_reconciles(subscriptions)
+    _assert_quirks_present(subscriptions)
     _assert_story_targets(subscriptions, customers)
+    _assert_quirk_c(customers)
+    _assert_churn_reasons(churn_reasons, customers)
+
+    customers_path = _write_customers(customers)
+    print(f"customers: {len(customers)} rows -> {customers_path.name}")
     sub_path = _write_subscriptions(subscriptions)
     print(f"subscriptions: {len(subscriptions)} rows -> {sub_path.name}")
+    cr_path = _write_churn_reasons(churn_reasons)
+    print(f"churn_reasons: {len(churn_reasons)} rows -> {cr_path.name}")
 
 
 if __name__ == "__main__":
